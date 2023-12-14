@@ -1,10 +1,32 @@
 import express from "express";
+import { 
+    changePassword,
+    confirmationUserToken, 
+    loginUser, 
+    perfil, 
+    registerUser, 
+    resetAccountPassword, 
+    validationToken, 
+    } from "../controllers/userController.js";
 
-const router = express();
+import checkAuth from "../middleware/checkAuth.js";
 
-router.get("/",(req,res)=>{
-    res.json({status:true})
-})
+const router = express.Router();
 
+// auth - login
+router.post("/login",loginUser);
+
+// register
+router.post("/",registerUser);
+
+// confirm account
+router.get("/confirm/:token",confirmationUserToken);
+
+// reset account - password
+router.post("/new-password",resetAccountPassword);
+
+router.route("/new-password/:token").get(validationToken).post(changePassword);
+
+router.get("/perfil",checkAuth,perfil);
 
 export default router;
