@@ -1,6 +1,6 @@
 import generateId from "../helpers/generateId.js";
 import generateJWT from "../helpers/generateJWT.js";
-import UserModel from "../models/userModels.js"
+import UserModel from "../models/UserModels.js"
 
 // auth
 const loginUser = async (req,res)=>{

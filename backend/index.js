@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 // setting
 import ConectDB from './config/db.js';
 import usersRoutes from './routes/userRoutes.js';
+import templatesRoutes from './routes/templateRoutes.js';
+import templatesCT62Routes from './routes/templatect62outes.js';
 
 const app = express();
 //procesar respuesta tipo json
@@ -15,8 +17,8 @@ ConectDB()
 
 // routing
 app.use("/api/users",usersRoutes);
-
-console.log(process.env.PORT)
+app.use("/api/templates",templatesRoutes);
+app.use("/api/templatesct62",templatesCT62Routes);//ct6-2 : signos-vitales
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, ()=>{
