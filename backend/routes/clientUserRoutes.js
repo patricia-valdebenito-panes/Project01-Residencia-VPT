@@ -6,7 +6,7 @@ import checkAuth from "../middleware/checkAuth.js";
 
 const router = express.Router();
 
-router.get("/client",checkAuth, perfil);
-router.get("/client/fnund",checkAuth, fnund);
+router.get("/",checkAuth, perfil);
+router.get("/fnund",checkAuth, fnund);
 
 export default router;
