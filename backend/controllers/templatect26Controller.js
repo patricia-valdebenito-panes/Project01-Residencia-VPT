@@ -1,4 +1,4 @@
-import CT62 from "../models/TemplateModelCT62.js";
+import TemplateCT62 from "../models/TemplateModelCT62.js";
 import TemplateModel from "../models/templatesModel.js";
 
 const getTemplates_CT_6_2 = async (req, res) => {};
@@ -11,7 +11,7 @@ const createTemplate_CT_6_2 = async (req, res) => {
   // get id_template - with -  id creator
   // add id_template - to - id_template-ct6-2
   
-  const template = new CT62(req.body);
+  const template = new TemplateCT62(req.body);
   template.creator= req.user._id;
 
 

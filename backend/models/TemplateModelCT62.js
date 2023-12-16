@@ -47,6 +47,6 @@ const CT_6_2_Schema = mongoose.Schema(
 // middleware y hooks
 
 
-const CT62 = mongoose.model("CT_6_2", CT_6_2_Schema);
+const TemplateCT62 = mongoose.model("CT_6_2", CT_6_2_Schema);
 
-export default CT62;
+export default TemplateCT62;

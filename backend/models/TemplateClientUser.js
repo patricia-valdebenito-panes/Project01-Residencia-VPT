@@ -9,12 +9,12 @@ const clientUserSchema = mongoose.Schema(
       trim: true,
     },
     //email,password:tutor
-    lasnamemother: {
+    lastnamemother: {
       type: String,
       required: true,
       trim: true,
     },
-    lasnamefather: {
+    lastnamefather: {
       type: String,
       required: true,
       trim: true,
@@ -48,6 +48,16 @@ const clientUserSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    creator: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref:"User",
+      required: true
+    },
+    // id_template:{
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref:"Template",
+    //   required: true
+    // },
     // token: {
     //   type: String,
     // },
@@ -60,6 +70,6 @@ const clientUserSchema = mongoose.Schema(
 // middleware y hooks
 
 // model
-const ClientUserModel = mongoose.model("ClientUser", clientUserSchema);
+const TemplateClientUserModel = mongoose.model("ClientUser", clientUserSchema);
 
-export default ClientUserModel;
+export default TemplateClientUserModel;
