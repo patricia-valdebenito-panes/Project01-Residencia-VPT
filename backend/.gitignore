@@ -1,3 +1,4 @@
 # dependencies
+.env
 .vscode/
 /node_modules

@@ -10,7 +10,6 @@ import templatesCT62Routes from './routes/templatect62outes.js';
 
 
 const app = express();
-//procesar respuesta tipo json
 app.use(express.json());
 dotenv.config();
 
@@ -22,6 +21,7 @@ app.use("/api/users",usersRoutes);
 app.use("/api/templates",templatesRoutes);
 app.use("/api/client",clientUserRoutes);//ct1 : perfil
 app.use("/api/templatesct62",templatesCT62Routes);//ct6-2 : signos-vitales
+// app.use("/api/templatesct_n",templatesCT_n);//ctn : other template
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, ()=>{
