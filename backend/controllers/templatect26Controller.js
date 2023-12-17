@@ -51,7 +51,7 @@ const editTemplate_CT_6_2 = async (req, res) => {
     return res.status(404).json({msg:err.message})
   }
   // other user : aprobación / regla de negocio
-  
+
   template.presion = req.body.presion || template.presion;
   template.pulse = req.body.type || template.pulse;
   template.temperature = req.body.temperature || template.temperature;
@@ -68,7 +68,35 @@ const editTemplate_CT_6_2 = async (req, res) => {
 
 };
 
-const deleteTemplate_CT_6_2 = async (req, res) => {};
+const deleteTemplate_CT_6_2 = async (req, res) => {
+  const { id } = req.params;
+
+  const template = await TemplateCT62.findById(id);
+
+
+  if(!template){
+    const err = new Error('No encontrado.');
+    return res.status(404).json({msg:err.message})
+  }
+
+  // if(template.creator.toString() !== req.user._id.toString()){
+  //   const err = new Error('No Válido.');
+  //   return res.status(404).json({msg:err.message});
+  // }
+
+  // other user : aprobación / regla de negocio
+  if(req.user.rol.toString() !== 'SUPERADMIN'){
+    const err = new Error('No Válido.');
+    return res.status(404).json({msg:err.message});
+  }
+
+  try {
+    await template.deleteOne();
+    res.json({msg:'Registro Eliminado.'});
+  } catch (err) {
+    console.log(`Error : ${err}`);
+  };
+}
 const addSubSectionTemplate_CT_6_2 = async (req, res) => {};
 const deleteSubSectionTemplate_CT_6_2 = async (req, res) => {};
 

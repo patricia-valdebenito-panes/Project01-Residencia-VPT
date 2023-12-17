@@ -23,6 +23,13 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    rol: {
+      // SUPERADMIN 
+      // ADMIN
+      // CAREGIVER 
+      type: String,
+      required: true
+    },
     token: {
       type: String,
     },

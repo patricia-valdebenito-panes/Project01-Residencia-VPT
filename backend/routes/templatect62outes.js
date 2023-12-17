@@ -3,7 +3,7 @@ import {
   createTemplate_CT_6_2,
   // createTemplate_CT_6_2,
   // deleteSubSectionTemplate_CT6_2,
-  // deleteTemplate_CT_6_2,
+  deleteTemplate_CT_6_2,
   editTemplate_CT_6_2,
   // getSubSectionTemplate_CT6_2,
   getTemplate_CT_6_2,
@@ -21,7 +21,7 @@ router.route("/")
 router.route("/:id")
   .get(checkAuth, getTemplate_CT_6_2)
   .put(checkAuth, editTemplate_CT_6_2)
-  // .delete(checkAuth, deleteTemplate_CT_6_2);
+  .delete(checkAuth, deleteTemplate_CT_6_2);
 
 // router.get("/subsection/:id",checkAuth,getSubSectionTemplate);
 // router.post("/add-subsection/:id",checkAuth,addSubSectionTemplate);

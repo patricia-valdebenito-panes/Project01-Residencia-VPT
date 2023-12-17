@@ -2,6 +2,7 @@ import express from "express";
 import { 
     changePassword,
     confirmationUserToken, 
+    getAllUsers, 
     loginUser, 
     perfil, 
     registerUser, 
@@ -28,5 +29,7 @@ router.post("/new-password",resetAccountPassword);
 router.route("/new-password/:token").get(validationToken).post(changePassword);
 
 router.get("/perfil",checkAuth,perfil);
+
+router.get("/list-users",checkAuth,getAllUsers);
 
 export default router;

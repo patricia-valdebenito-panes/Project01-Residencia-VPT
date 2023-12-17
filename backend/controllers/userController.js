@@ -141,9 +141,21 @@ const perfil = async (req,res) => {
     res.json(user);
 }
 
+const getAllUsers = async (req,res) => {
+    const users = await UserModel.find();
+    console.log("users : ",users);
+    try{
+      res.json(users);
+    }
+    catch(err){
+      consolee.log(`Error : ${err}`)
+    }
+}
+
 export { 
     changePassword,
     confirmationUserToken,
+    getAllUsers,
     loginUser,
     perfil,
     registerUser,
