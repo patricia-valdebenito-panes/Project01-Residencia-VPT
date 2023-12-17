@@ -5,9 +5,12 @@ import mongoose from "mongoose";
 const TemplateSchema = mongoose.Schema(
   {
     //Paciente//residente
-    type: {
+    idTemplate:{
       type: String,
       required: true
+    },
+    type: {
+      type: String
     },
     creator: {
         type: mongoose.Schema.Types.ObjectId,

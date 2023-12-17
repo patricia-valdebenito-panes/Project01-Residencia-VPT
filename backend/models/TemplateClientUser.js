@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const clientUserSchema = mongoose.Schema(
   {
-    name: {
+    client: {
       type: String,
       required: true,
       trim: true,
