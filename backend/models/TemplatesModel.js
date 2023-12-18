@@ -1,6 +1,5 @@
-// CT-6-2 : signos-vitales
+// CT : general
 import mongoose from "mongoose";
-
 
 const TemplateSchema = mongoose.Schema(
   {

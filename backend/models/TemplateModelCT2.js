@@ -1,8 +1,8 @@
-//CT-6-2 : signos-vitales
+//CT-2 : cambio-de-posicion
 import mongoose from "mongoose";
 // import bcrypt from "bcrypt";
 
-const CT_6_2_Schema = mongoose.Schema(
+const CT_2_Schema = mongoose.Schema(
   {  
     //residente
     client: {
@@ -14,22 +14,17 @@ const CT_6_2_Schema = mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      default:"CT_6_2"
+      default:"CT_6"
     },
-    presion: {
-      type: mongoose.Decimal128,
+    template:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref:"Template",
+      required: true
     },
-    pulse: {
-      type: mongoose.Decimal128,
-    },
-    temperature: {
-        type: mongoose.Decimal128,
-      },
-    FR: {
-        type: mongoose.Decimal128,
-    },
-    SAC: {
-      type: mongoose.Decimal128,
+    PC: {
+      type: String,
+      required: true,
+      enum:["AM","PM"]
     },
     Obs: {
       type: String
@@ -47,6 +42,6 @@ const CT_6_2_Schema = mongoose.Schema(
 
 // middleware y hooks
 
-const TemplateCT62 = mongoose.model("CT_6_2", CT_6_2_Schema);
+const TemplateCT2 = mongoose.model("CT_2", CT_2_Schema);
 
-export default TemplateCT62;
+export default TemplateCT2;

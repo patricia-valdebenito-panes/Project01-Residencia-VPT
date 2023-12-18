@@ -5,8 +5,15 @@ import dotenv from 'dotenv';
 import ConectDB from './config/db.js';
 import usersRoutes from './routes/userRoutes.js';
 import clientUserRoutes from './routes/clientUserRoutes.js';
+
 import templatesRoutes from './routes/templateRoutes.js';
-import templatesCT62Routes from './routes/templatect62outes.js';
+
+import templatesCT2Routes from './routes/templateCT2Routes.js';
+import templatesCT3Routes from './routes/templateCT3Routes.js';
+import templatesCT4Routes from './routes/templateCT4Routes.js';
+import templatesCT5Routes from './routes/templateCT5Routes.js';
+import templatesCT6Routes from './routes/templateCT6Routes.js';
+import templatesCT7Routes from './routes/templateCT7Routes.js';
 
 
 const app = express();
@@ -20,8 +27,15 @@ ConectDB()
 app.use("/api/users",usersRoutes);
 app.use("/api/templates",templatesRoutes);
 app.use("/api/client",clientUserRoutes);//ct1 : perfil
-app.use("/api/templatesct62",templatesCT62Routes);//ct6-2 : signos-vitales
-// app.use("/api/templatesct_n",templatesCT_n);//ctn : other template
+
+app.use("/api/templatesCT2",templatesCT2Routes);//ct2: signos-vitales
+app.use("/api/templatesCT3",templatesCT3Routes);//ct3: curaciones
+app.use("/api/templatesCT4",templatesCT4Routes);//ct4: vacunas
+app.use("/api/templatesCT7",templatesCT5Routes);//ct5: health care record
+app.use("/api/templatesCT6",templatesCT6Routes);//ct6: signos-vitales
+app.use("/api/templatesCT7",templatesCT7Routes);//ct7: Diuresis y deposiciones
+
+
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, ()=>{

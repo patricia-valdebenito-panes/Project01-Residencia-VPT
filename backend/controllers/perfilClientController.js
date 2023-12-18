@@ -4,7 +4,6 @@
 
 import TemplateClientUserModel from "../models/TemplateClientUser.js";
 
-
 // auth ok
 // register new resident/tutor
 const createNewClient = async (req,res) => {
