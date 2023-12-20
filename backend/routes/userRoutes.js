@@ -28,8 +28,10 @@ router.post("/new-password",resetAccountPassword);
 
 router.route("/new-password/:token").get(validationToken).post(changePassword);
 
+// perfil
 router.get("/perfil",checkAuth,perfil);
 
+// lista de usuarios
 router.get("/list-users",checkAuth,getAllUsers);
 
 export default router;

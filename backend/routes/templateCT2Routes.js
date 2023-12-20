@@ -5,13 +5,13 @@ import {
   editTemplate_CT2,
   getTemplate_CT2,
   getTemplates_CT2,
-} from "../controllers/templateCT2Controller.js";
+} from "../controllers/templatesController/templateCT2Controller.js";
 import checkAuth from "../middleware/checkAuth.js";
 
 const router = express.Router();
 
 router.route("/")
- .get(checkAuth, getTemplates_CT2)
+ .get(checkAuth, getTemplates_CT2) //LISTA
  .post(checkAuth, createTemplate_CT2);
 
 router.route("/:id")

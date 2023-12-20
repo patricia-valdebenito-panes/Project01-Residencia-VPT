@@ -4,12 +4,11 @@ import mongoose from "mongoose";
 
 const clientUserSchema = mongoose.Schema(
   {
-    client: {
+    name: {
       type: String,
       required: true,
       trim: true,
     },
-    //email,password:tutor
     lastnamemother: {
       type: String,
       required: true,
@@ -45,21 +44,17 @@ const clientUserSchema = mongoose.Schema(
         required: true,
         trim: true,
     },
-    confirmated: {
-      type: Boolean,
-      default: false,
-    },
     creator: {
       type: mongoose.Schema.Types.ObjectId,
       ref:"User",
       required: true
     },
-    // id_template:{
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref:"Template",
-    //   required: true
-    // },
-    // token: {
+    template:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref:"Template",
+      required: true
+    },
+    // token: { // considerar notificacion de edicion
     //   type: String,
     // },
   },

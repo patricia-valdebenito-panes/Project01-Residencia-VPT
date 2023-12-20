@@ -5,7 +5,7 @@ import {
   editTemplate_CT7,
   getTemplate_CT7,
   getTemplates_CT7,
-} from "../controllers/templateCT7Controller.js";
+} from "../controllers/templatesController/templateCT7Controller.js";
 import checkAuth from "../middleware/checkAuth.js";
 
 const router = express.Router();

@@ -2,7 +2,7 @@
 // import generateJWT from "../helpers/generateJWT.js";
 // import UserModel from "../models/UserModels.js"
 
-import TemplateClientUserModel from "../models/TemplateClientUser.js";
+import TemplateClientUserModel from "../../models/TemplateClientUser.js";
 
 // auth ok
 // register new resident/tutor

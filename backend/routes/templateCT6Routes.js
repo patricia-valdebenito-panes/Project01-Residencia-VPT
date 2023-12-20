@@ -8,7 +8,7 @@ import {
   getTemplate_CT6,
   getTemplates_CT6,
   // addSubSectionTemplate_CT6,
-} from "../controllers/templateCT6Controller.js";
+} from "../controllers/templatesController/templateCT6Controller.js";
 import checkAuth from "../middleware/checkAuth.js";
 
 const router = express.Router();

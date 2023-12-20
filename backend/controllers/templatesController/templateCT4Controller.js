@@ -1,8 +1,8 @@
-import TemplateCT6 from "../models/TemplateModelCT6.js";
+import TemplateCT4 from "../../models/TemplateModelCT4.js";
 
-const getTemplates_CT6 = async (req, res) => {
-  const templates = await TemplateCT6.find();
-  console.log("all - templates ct6",templates);
+const getTemplates_CT4 = async (req, res) => {
+  const templates = await TemplateCT4.find();
+  console.log("all - templates ct4",templates);
   try{
     res.json(templates);
   }
@@ -10,23 +10,23 @@ const getTemplates_CT6 = async (req, res) => {
     consolee.log(`Error : ${err}`)
   }
 };
-const createTemplate_CT6 = async (req, res) => {
+const createTemplate_CT4 = async (req, res) => {
   // name, presion,pulse,temperature,FR,SAC,Obs
-  const template = new TemplateCT6(req.body);
+  const template = new TemplateCT4(req.body);
   template.creator= req.user._id;
   // template.idTemplate = req.idTemplate;
   try {
-    const CT6_Save = await template.save();
-    res.json(CT6_Save);
+    const CT4_Save = await template.save();
+    res.json(CT4_Save);
 
   } catch (err) {
     console.log(`Error : ${err}`);
   }
 };
 
-const getSubSectionTemplate_CT6 = async (req, res) => {};
+const getSubSectionTemplate_CT4 = async (req, res) => {};
 
-const getTemplate_CT6 = async (req, res) => {
+const getTemplate_CT4 = async (req, res) => {
   console.log("getClient : req.params",req.params);
   try {
     res.json(req.body);
@@ -35,11 +35,11 @@ const getTemplate_CT6 = async (req, res) => {
   }
 };
 
-const editTemplate_CT6 = async (req, res) => {
+const editTemplate_CT4 = async (req, res) => {
   const { id } = req.params;
 
-  const template = await TemplateCT6.findById(id);
-  console.log("edit - templates C6", template);
+  const template = await TemplateCT4.findById(id);
+  console.log("edit - templates C4", template);
 
   if(!template){
     const err = new Error('No encontrado.');
@@ -51,13 +51,10 @@ const editTemplate_CT6 = async (req, res) => {
     return res.status(404).json({msg:err.message})
   }
   // other user : aprobación / regla de negocio
-
-  template.presion = req.body.presion || template.presion;
-  template.pulse = req.body.type || template.pulse;
-  template.temperature = req.body.temperature || template.temperature;
-  template.FR = req.body.tFRype || template.FR;
-  template.SAC = req.body.tSACype || template.SAC;
-  template.Obs = req.body.Obs || template.Obs;
+  
+  template.name = req.body.name || template.name;// name
+  template.applyNext = req.body.applyNext || template.applyNext;// applyNext
+  template.Obs = req.body.Obs || template.Obs;// Observación
 
   try {
     const editTemplate =  await template.save();
@@ -68,10 +65,10 @@ const editTemplate_CT6 = async (req, res) => {
 
 };
 
-const deleteTemplate_CT6 = async (req, res) => {
+const deleteTemplate_CT4 = async (req, res) => {
   const { id } = req.params;
 
-  const template = await TemplateCT6.findById(id);
+  const template = await TemplateCT4.findById(id);
 
   if(!template){
     const err = new Error('No encontrado.');
@@ -97,16 +94,16 @@ const deleteTemplate_CT6 = async (req, res) => {
   };
 }
 
-const addSubSectionTemplate_CT6 = async (req, res) => {};
-const deleteSubSectionTemplate_CT6 = async (req, res) => {};
+const addSubSectionTemplate_CT4 = async (req, res) => {};
+const deleteSubSectionTemplate_CT4 = async (req, res) => {};
 
 export {
-  createTemplate_CT6,
-  getTemplate_CT6,
-  getTemplates_CT6,
-  deleteSubSectionTemplate_CT6,
-  deleteTemplate_CT6,
-  editTemplate_CT6,
-  getSubSectionTemplate_CT6,
-  addSubSectionTemplate_CT6,
+  createTemplate_CT4,
+  getTemplate_CT4,
+  getTemplates_CT4,
+  deleteSubSectionTemplate_CT4,
+  deleteTemplate_CT4,
+  editTemplate_CT4,
+  getSubSectionTemplate_CT4,
+  addSubSectionTemplate_CT4,
 };

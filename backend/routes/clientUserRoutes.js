@@ -3,7 +3,7 @@ import {  perfil } from "../controllers/userController.js";
 import {  
     createNewClient, 
     getClient, 
-    getTemplatesClient } from "../controllers/perfilClientController.js";
+    getTemplatesClient } from "../controllers/templatesController/perfilClientController.js";
 
 import checkAuth from "../middleware/checkAuth.js";
 

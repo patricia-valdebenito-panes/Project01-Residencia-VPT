@@ -10,12 +10,6 @@ const CT_3_Schema = mongoose.Schema(
       ref: "ClientUser",
       required: true,
     },
-    templateClasification: {
-      type: String,
-      required: true,
-      trim: true,
-      default: "CT_3",
-    },
     template: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Template",
@@ -34,7 +28,7 @@ const CT_3_Schema = mongoose.Schema(
       trim: true,
     },
     // Origen de úlcera
-    originOfUlcer: {
+    UlcerOrigin: {
       type: String,
       required: true,
       trim: true,
@@ -62,14 +56,14 @@ const CT_3_Schema = mongoose.Schema(
       required: true,
       trim: true,
     },
-    Obs: {
-      type: String,
-    },
     creator: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
+    Obs: {
+      type: String,
+    }
   },
   {
     timestamps: true,

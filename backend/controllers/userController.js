@@ -139,11 +139,16 @@ const perfil = async (req,res) => {
     console.log("desde perfil");
     const { user } = req;
     res.json(user);
+    // {
+    //     "_id"
+    //     "name"
+    //     "email"
+    //     "rol"
+    // }
 }
 
 const getAllUsers = async (req,res) => {
-    const users = await UserModel.find();
-    console.log("users : ",users);
+    const users = await UserModel.find().select('_id name email rol');;
     try{
       res.json(users);
     }

@@ -1,29 +1,31 @@
 import express from "express";
 import {
   createTemplate,
-  deleteSubSectionTemplate,
-  deleteTemplate,
+  // deleteTemplate,
   editTemplate,
-  getSubSectionTemplate,
   getTemplate,
-  getTemplates,
-  addSubSectionTemplate,
-} from "../controllers/templateController.js";
+  getTemplates
+} from "../controllers/templatesController/templateController.js";
 import checkAuth from "../middleware/checkAuth.js";
 
 const router = express.Router();
 
+const routerTemplate = async (req, res) => {
+  const { template } = req;
+  const { _id } = template;
+  res.redirect(`/api/templates/${_id.toString()}`);
+};
+
 router.route("/")
 .get(checkAuth, getTemplates)
-.post(checkAuth, createTemplate);
+.post(checkAuth, createTemplate, routerTemplate);
 
 router.route("/:id")
   .get(checkAuth, getTemplate)
   .put(checkAuth, editTemplate)
-  .delete(checkAuth, deleteTemplate);
+  // .delete(checkAuth, deleteTemplate);
 
-router.get("/subsection/:id",checkAuth,getSubSectionTemplate);
-router.post("/add-subsection/:id",checkAuth,addSubSectionTemplate);
-router.post("/delete-subsection/:id",checkAuth,deleteSubSectionTemplate);
+// // lista de templates
+router.get("/list-templates",checkAuth,getTemplates);
 
 export default router;

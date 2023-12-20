@@ -16,6 +16,7 @@ const checkAuth = async (req, res, next) => {
         token = req.headers.authorization.split(' ')[1]; //codificated
         const decoded = jwt.verify(token,process.env.JWT_SECRET);
         req.user = await UserModel.findById(decoded.id).select("-password -confirmated -token -createdAt -updatedAt -__v");
+        console.log("req.user",req.user)
         return next();
 
     } catch (err) {

@@ -10,30 +10,24 @@ const CT_2_Schema = mongoose.Schema(
       ref:"ClientUser",
       required: true,
     },
-    templateClasification:{
+    PC: {
       type: String,
       required: true,
-      trim: true,
-      default:"CT_6"
+      enum:["AM","PM"]
     },
     template:{
       type: mongoose.Schema.Types.ObjectId,
       ref:"Template",
       required: true
     },
-    PC: {
-      type: String,
-      required: true,
-      enum:["AM","PM"]
-    },
-    Obs: {
-      type: String
-    },
     creator: {
       type: mongoose.Schema.Types.ObjectId,
       ref:"User",
       required: true
     },
+    Obs: {
+      type: String
+    }
   },
   {
     timestamps: true,
@@ -45,3 +39,6 @@ const CT_2_Schema = mongoose.Schema(
 const TemplateCT2 = mongoose.model("CT_2", CT_2_Schema);
 
 export default TemplateCT2;
+
+
+

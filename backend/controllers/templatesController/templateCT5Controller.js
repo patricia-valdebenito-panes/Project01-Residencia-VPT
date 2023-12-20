@@ -1,4 +1,5 @@
-import TemplateCT5 from "../models/TemplateModelCT5.js";
+import TemplateCT5 from "../../models/TemplateModelCT5.js";
+import TemplateModel from "../../models/templatesModel.js";
 
 const getTemplates_CT5 = async (req, res) => {
   const templates = await TemplateCT5.find();
@@ -27,7 +28,16 @@ const createTemplate_CT5 = async (req, res) => {
 const getSubSectionTemplate_CT5 = async (req, res) => {};
 
 const getTemplate_CT5 = async (req, res) => {
-  console.log("getClient : req.params",req.params);
+  const { id } = req.params;
+  const templateModel = await TemplateModel.findById(id);
+
+  console.log("TemplateModel : ", template);
+
+  if(!template){
+    const err = new Error('No encontrado.');
+    return res.status(404).json({msg:err.message})
+  }
+
   try {
     res.json(req.body);
   } catch (err) {

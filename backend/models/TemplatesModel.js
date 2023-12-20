@@ -3,23 +3,26 @@ import mongoose from "mongoose";
 
 const TemplateSchema = mongoose.Schema(
   {
-    //Paciente//residente
-    idTemplate:{
-      type: String,
+    client: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref:"ClientUser",
       required: true
-    },
-    type: {
-      type: String
-    },
+  },
     creator: {
         type: mongoose.Schema.Types.ObjectId,
         ref:"User",
         required: true
     },
-    contributors: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"User"
+    type: {
+      type: String,
+      required: true
     },
+    contributors:  {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "User",
+      default: [],
+      set: contributors => [...new Set(contributors)]
+    }
   },
   {
     timestamps: true,
@@ -29,3 +32,7 @@ const TemplateSchema = mongoose.Schema(
 const TemplateModel = mongoose.model("Template", TemplateSchema);
 
 export default TemplateModel;
+
+mongoose
+
+

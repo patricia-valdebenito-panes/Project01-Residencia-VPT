@@ -1,4 +1,4 @@
-import TemplateCT3 from "../models/TemplateModelCT3.js";
+import TemplateCT3 from "../../models/TemplateModelCT3.js";
 
 const getTemplates_CT3 = async (req, res) => {
   const templates = await TemplateCT3.find();
@@ -54,7 +54,7 @@ const editTemplate_CT3 = async (req, res) => {
  
   template.typeCure = req.body.typeCure || template.typeCure;// Tipo de curación
   template.zone = req.body.zone || template.zone;// Zona
-  template.originOfUlcer = req.body.originOfUlcer || template.originOfUlcer;// Origen de úlcera
+  template.UlcerOrigin = req.body.UlcerOrigin || template.UlcerOrigin;// Origen de úlcera
   template.valorationAndEvolution = req.body.valorationAndEvolution || template.valorationAndEvolution;// Valoración y evolución
   template.frecuencyCure = req.body.frecuencyCure || template.frecuencyCure; // Próx. Fecha de curación
   template.cureNext = req.body.cureNext || template.cureNext;// Frecuencia de curaciones

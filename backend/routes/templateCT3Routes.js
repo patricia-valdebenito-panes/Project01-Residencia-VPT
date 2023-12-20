@@ -5,7 +5,7 @@ import {
   editTemplate_CT3,
   getTemplate_CT3,
   getTemplates_CT3,
-} from "../controllers/templateCT3Controller.js";
+} from "../controllers/templatesController/templateCT3Controller.js";
 import checkAuth from "../middleware/checkAuth.js";
 
 const router = express.Router();
