@@ -29,7 +29,7 @@ const getSubSectionTemplate_CT5 = async (req, res) => {};
 
 const getTemplate_CT5 = async (req, res) => {
   const { id } = req.params;
-  const templateModel = await TemplateModel.findById(id);
+  const template = await TemplateCT5.findById(id).populate("template");;
 
   console.log("TemplateModel : ", template);
 
@@ -39,7 +39,7 @@ const getTemplate_CT5 = async (req, res) => {
   }
 
   try {
-    res.json(req.body);
+    res.json(template);
   } catch (err) {
     console.log(`Error : ${err}`);
   }

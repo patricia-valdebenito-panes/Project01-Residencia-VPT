@@ -10,21 +10,11 @@ const CT_5_Schema = mongoose.Schema(
       ref: "ClientUser",
       required: true,
     },
-    templateClasification: {
-      type: String,
-      required: true,
-      trim: true,
-      default: "CT_5",
-    },
+
     template: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Template",
       required: true,
-    },
-    date:{
-      type: Date,
-      required: true,
-      default: Date.now()
     },
     // Control de signos vitales
     presion: {
@@ -43,11 +33,11 @@ const CT_5_Schema = mongoose.Schema(
       type: mongoose.Decimal128,
     },
     motive: { // Saturacion
-      type: mongoose.Decimal128,
+      type: String,
+      required: false,
+      trim: true
     },
-    motive: { // Saturacion
-      type: mongoose.Decimal128,
-    },
+
     PE: { // Examen fisico 
       type: String,
       required: false,

@@ -28,7 +28,7 @@ app.use("/api/users",usersRoutes);
 app.use("/api/templates",templatesRoutes);
 app.use("/api/client",clientUserRoutes);//ct1 : perfil
 app.use("/cambio-de-posicion",templatesCT2Routes);
-app.use("curaciones",templatesCT3Routes);
+app.use("/curaciones",templatesCT3Routes);
 app.use("/vacunas",templatesCT4Routes);
 app.use("/visita-medica",templatesCT5Routes);
 app.use("/signos-vitales",templatesCT6Routes);

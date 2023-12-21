@@ -27,9 +27,18 @@ const createTemplate_CT4 = async (req, res) => {
 const getSubSectionTemplate_CT4 = async (req, res) => {};
 
 const getTemplate_CT4 = async (req, res) => {
-  console.log("getClient : req.params",req.params);
+  const { id } = req.params;
+  const template = await TemplateCT4.findById(id).populate("template");;
+
+  console.log("TemplateMode : ", template);
+
+  if (!template) {
+    const err = new Error("No encontrado.");
+    return res.status(404).json({ msg: err.message });
+  }
+
   try {
-    res.json(req.body);
+    res.json(template);
   } catch (err) {
     console.log(`Error : ${err}`);
   }

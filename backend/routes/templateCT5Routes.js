@@ -14,9 +14,9 @@ router.route("/")
  .get(checkAuth, getTemplates_CT5)
  .post(checkAuth, createTemplate_CT5);
 
-// router.route("/:id")
-//   .get(checkAuth, getTemplate_CT5)
-//   .put(checkAuth, editTemplate_CT5)
-//   .delete(checkAuth, deleteTemplate_CT5);
+router.route("/:id")
+  .get(checkAuth, getTemplate_CT5)
+  .put(checkAuth, editTemplate_CT5)
+  .delete(checkAuth, deleteTemplate_CT5);
 
 export default router;

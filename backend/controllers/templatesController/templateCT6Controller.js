@@ -27,9 +27,16 @@ const createTemplate_CT6 = async (req, res) => {
 const getSubSectionTemplate_CT6 = async (req, res) => {};
 
 const getTemplate_CT6 = async (req, res) => {
-  console.log("getClient : req.params",req.params);
+  const { id } = req.params;
+  const template = await TemplateCT6.findById(id).populate("template");;
+
+  if (!template) {
+    const err = new Error("No encontrado.");
+    return res.status(404).json({ msg: err.message });
+  }
+
   try {
-    res.json(req.body);
+    res.json(template);
   } catch (err) {
     console.log(`Error : ${err}`);
   }

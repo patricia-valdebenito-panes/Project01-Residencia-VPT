@@ -10,12 +10,6 @@ const CT_4_Schema = mongoose.Schema(
       ref: "ClientUser",
       required: true,
     },
-    templateClasification: {
-      type: String,
-      required: true,
-      trim: true,
-      default: "CT_4",
-    },
     template: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Template",

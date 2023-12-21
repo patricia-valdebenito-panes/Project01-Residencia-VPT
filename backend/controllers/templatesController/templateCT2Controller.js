@@ -30,10 +30,8 @@ const createTemplate_CT2 = async (req, res) => {
 
 const getTemplate_CT2 = async (req, res) => {
   const { id } = req.params;
-  const template = await TemplateCT2.findById(id);
-
-  console.log("TemplateModel : ", template);
-
+  const template = await TemplateCT2.findById(id).populate("template");
+// console.log("template",template)
   if (!template) {
     const err = new Error("No encontrado.");
     return res.status(404).json({ msg: err.message });

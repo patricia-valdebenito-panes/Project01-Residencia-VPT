@@ -3,8 +3,8 @@
 // import UserModel from "../models/UserModels.js"
 
 import TemplateClientUserModel from "../../models/TemplateClientUser.js";
+import TemplateModel from "../../models/templatesModel.js";
 
-// auth ok
 // register new resident/tutor
 const createNewClient = async (req,res) => {
   const template = new TemplateClientUserModel(req.body);
@@ -20,8 +20,6 @@ const createNewClient = async (req,res) => {
 }
 
 const getClient = async (req,res) => {
-  console.log("getClient : req",req);
-  console.log("getClient : req.params",req.params);
   const { id } = req.params;
   const client = await TemplateClientUserModel.findById(id);
 
@@ -37,20 +35,43 @@ const getClient = async (req,res) => {
 }
 
 const getTemplatesClient = async (req, res) => {
-  const templates = await TemplateClientUserModel.find();
-  console.log("all - templates CLIENT",templates);
+  const { id } = req.params;
+  const clients = await TemplateClientUserModel.find();
+
+  if(!client){
+   return res.status(404).json({msg:'Cliente No Encontrado'}); 
+  }
+
   try{
-    res.json(templates);
+    res.json(clients);
   }
   catch(err){
     consolee.log(`Error : ${err}`)
   }
 };
 
+const getTemplatesCTClient = async (req,res) =>{
+  const { id } = req.params;
+  const client = await TemplateClientUserModel.findById(id);
+
+  if(!client){
+   return res.status(404).json({msg:'Cliente No Encontrado'}); 
+  }
+
+  const templates = await TemplateModel.find().where("client").equals(id);
+
+  try{
+    res.json(templates);
+  }
+  catch(err){
+    consolee.log(`Error : ${err}`)
+  }
+}
 export { 
     createNewClient,
     getClient,
-    getTemplatesClient
+    getTemplatesClient,
+    getTemplatesCTClient
 }
 
 

@@ -39,19 +39,49 @@ const clientUserSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
+    tutor: {
+      type: Object,
+      required: true,
+      name:{
+        type: String,
+        required: true,
+        trim: true,
+      },
+      lastnamefather:{
+        type: String,
+        required: true,
+        trim: true,
+      },
+      lastnamemother:{
+        type: String,
+        required: true,
+        trim: true,
+      },
+      phone:{
+        type: String,
+        required: true,
+        trim: true,
+      },
+      address:{
+        type: String,
+        required: true,
+        trim: true,
+      },
+      rut:{
+        type: String,
+        required: true,
+        trim: true,
+      },
+    },
     rol: { // Residente/Tutor/
         type: String,
         required: true,
+        enum:["RESIDENT","TUTOR"],
         trim: true,
     },
     creator: {
       type: mongoose.Schema.Types.ObjectId,
       ref:"User",
-      required: true
-    },
-    template:{
-      type: mongoose.Schema.Types.ObjectId,
-      ref:"Template",
       required: true
     },
     // token: { // considerar notificacion de edicion
