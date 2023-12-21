@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 
 export const RequestPassword = () => {
+    const [email, setEmail] = useState('');
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    }
     return (<>
       <div className="h-screen w-full">
         <div className="flex flex-col items-center flex-1 h-full justify-center px-4 sm:px-0">
@@ -14,13 +18,18 @@ export const RequestPassword = () => {
                             </h1>
                             <h2 className="text-2xl text-black text-center px-1 mt-2">Recuperar accesos</h2>
                         <div className="w-full mt-4">
-                            <form className="form-horizontal w-7/10 mx-auto">
+                            <form className="form-horizontal w-7/10 mx-auto" onSubmit={handleSubmit}>
 
                                 <div className="flex flex-col max-w-xs mx-auto mt-5">
                                     <label htmlFor="email" className="mb-1 font-medium">EMAIL</label>
-                                    <input id="email" type="text" 
+                                    <input 
+                                    id="email" 
+                                    type="text" 
                                     className="flex-grow h-10 px-2 border rounded border-grey-200" 
-                                    name="email" value="" required placeholder="Ingresar email"/>
+                                    name="email" 
+                                    value={email} 
+                                    required 
+                                    placeholder="Ingresar email"/>
                                 </div>
 
                                 <div className="flex flex-col max-w-xs mt-8 mx-auto mb-5">

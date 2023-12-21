@@ -1,25 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
+
 import { Link } from "react-router-dom";
+import { Alert } from "../components/Alert";
+
+import axios from "axios";
+const URL = 'http://localhost:4000/api/';
 
 export const Register = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [rol, setRol] = useState('');
+  const [alert, setAlert] = useState({});
+  
+
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+      console.log(name,email,password,rol);
+      // if([name,email,password,rol].includes('')){
+      //   setAlert({ msg:'Completar Campos Incompletos.',error:true });
+      //   return
+      // }
+      if([name].includes('')){
+        setAlert({ msg:'Debe ingresar un Nombre', error:true });
+        return
+      }
+      if([email].includes('')){
+        setAlert({ msg:'Debe ingresar un Email Válido.', error:true });
+        return
+      }
+      if([password].includes('')){
+        setAlert({ msg:'Debe ingresar una Contraseña.', error:true });
+        return
+      }
+      if([rol].includes('')){
+        setAlert({ msg:'Debe seleccionar un Rol.', error:true });
+        return
+      }
+
+     setAlert({});
+
+     try{
+        const respuesta = await axios.post(`${URL}users`,{name,email,password,rol})
+        console.log("respuesta :",respuesta)
+      }catch(error){
+      console.log(error)
+     }
+
+  }
+
   return (
     <>
+
       <div className="h-screen w-full">
         <div className="flex flex-col items-center flex-1 h-full justify-center px-4 sm:px-0">
-          <div className="flex  max-w-5xl rounded-lg shadow-lg shadow-primary-300 w-full sm:w-8/10 lg:w-8/10 xl:w-8/10 bg-white sm:mx-0">
+          <div className="flex max-w-5xl rounded-lg shadow-lg shadow-primary-300 w-full sm:w-8/10 lg:w-8/10 xl:w-8/10 bg-zinc-100 sm:mx-0">
             <div className="flex flex-col w-full  md:w-1/2 p-6">
+             { alert.error && <Alert alert={alert}/>}
               <div className="flex flex-col flex-1 justify-center mb-8 mt-2">
-                <h1 className="text-5xl text-center font-semibold">
-                  Bienvenido
-                  <br />
-                  <span className="text-4xl text-primary-600 px-1">
-                    Residencia Vida Plena
-                  </span>
-                </h1>
+                     <p className="text-3xl text-sky-950 font-medium mx-auto px-1">
+                        REGISTRAR USUARIO
+                      </p>
                 <div className="w-full mt-4">
-                  <form className="form-horizontal w-7/10 mx-auto">
+                  <form 
+                  className="form-horizontal w-7/10 mx-auto"
+                  onSubmit={handleSubmit}>
                     <div className="flex flex-col max-w-xs mx-auto mt-5">
-                      <label htmlFor="name" className="mb-1 font-medium">
+                      <label htmlFor="name" className="text-zinc-950 mb-1 font-medium">
                         NOMBRE
                       </label>
                       <input
@@ -27,13 +74,14 @@ export const Register = () => {
                         type="text"
                         className="flex-grow h-10 px-2 border rounded border-grey-200"
                         name="name"
-                        // value=""
+                        value={name}
                         required
                         placeholder="Ingresar email"
+                        onChange={e=>setName(e.target.value)}
                       />
                     </div>
                     <div className="flex flex-col max-w-xs mx-auto mt-5">
-                      <label htmlFor="email" className="mb-1 font-medium">
+                      <label htmlFor="email" className="text-zinc-950 mb-1 font-medium ">
                         EMAIL
                       </label>
                       <input
@@ -41,14 +89,15 @@ export const Register = () => {
                         type="text"
                         className="flex-grow h-10 px-2 border rounded border-grey-200"
                         name="email"
-                        // value=""
+                        value={email}
                         required
                         placeholder="Ingresar email"
+                        onChange={e=>setEmail(e.target.value)}
                       />
                     </div>
 
                     <div className="flex flex-col mx-auto max-w-xs mt-5">
-                      <label htmlFor="password" className="mb-1 font-medium">
+                      <label htmlFor="password" className="text-zinc-950 mb-1 font-medium">
                         CONTRASEÑA
                       </label>
                       <input
@@ -56,22 +105,26 @@ export const Register = () => {
                         type="password"
                         className="flex-grow h-10 px-2 rounded border border-grey-300"
                         name="password"
+                        value={password}
                         required
                         placeholder="Ingresar contraseña"
+                        onChange={e=>setPassword(e.target.value)}
                       />
                     </div>
 
                     <div className="w-full mt-4 mx-auto max-w-xs">
                       <label
-                        for="rol"
-                        class="block mb-2 text-base font-medium text-gray-900 dark:text-gray-400"
+                        htmlFor="rol"
+                        className="block mb-2 text-base font-medium text-zinc-950"
                       >ROL </label>
 
                       <select
                         id="rol"
-                        class="block py-3 px-4 w-full text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        value={rol}
+                        onChange={e => setRol(e.target.value)} 
+                        className="block py-3 px-4 w-full text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       >
-                        <option selected>Selecciona el ROL</option>
+                        <option value="">Seleccionar Rol</option>
                         <option value="SUPERADMIN">ADMINISTRADOR</option>
                         <option value="CAREGIVEN">CUIDADOR</option>
                       </select>
@@ -79,9 +132,9 @@ export const Register = () => {
                     <div className="flex flex-col max-w-xs mt-8 mx-auto mb-5">
                       <button
                         type="submit"
-                        className="bg-primary-500 hover:bg-blue-700 text-primary-50 text-sm font-semibold py-3 px-4 rounded"
+                        className=" bg-sky-700 border rounded-lg hover:bg-blue-700 text-sky-50 text-sm font-semibold py-3 px-4"
                       >
-                        Registrar
+                        REGISTRAR
                       </button>
                     </div>
                   </form>
@@ -95,8 +148,14 @@ export const Register = () => {
                 </div>
               </div>
             </div>
-            <div className="hidden md:block md:w-1/2 rounded-r-lg bg-primary-400">
-              imagen
+            <div className="flex justify-center md:w-1/2 rounded-r-lg bg-sky-600">
+                <h1 className="text-6xl text-center text-sky-50 font-semibold">
+                      Bienvenido
+                      <br />
+                      <span className="text-4xl text-cyan-200 drop-shadow-xl shadow-cyan-900/95 px-1">
+                        Residencia Vida Plena
+                      </span>
+                    </h1>
             </div>
           </div>
         </div>
