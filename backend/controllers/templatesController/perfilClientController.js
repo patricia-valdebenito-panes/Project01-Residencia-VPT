@@ -26,9 +26,11 @@ const getClient = async (req,res) => {
   if(!client){
    return res.status(404).json({msg:'Cliente No Encontrado'}); 
   }
+  // const templates = await TemplateModel.find().where("client").equals(id);
 
   try {
     res.json(client);
+    // res.json({client, templates});
   } catch (err) {
     console.log(`Error : ${err}`);
   }
