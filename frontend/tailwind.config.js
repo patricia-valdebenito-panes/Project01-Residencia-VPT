@@ -1,10 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: ["index.html", "./src/**/*.jsx"],
   theme: {
     fontFamily: {
-      display: ["Inter", "system-ui", "sans-serif"],
-      body: ["Inter", "system-ui", "sans-serif"],
+      display: ['Roboto', "system-ui", "sans-serif"],
+      body: ['Roboto', "system-ui", "sans-serif"],
     },
     colors: {
       primary: {
