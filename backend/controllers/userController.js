@@ -1,6 +1,6 @@
 import generateId from "../helpers/generateId.js";
 import generateJWT from "../helpers/generateJWT.js";
-import UserModel from "../models/userModels.js"
+import UserModel from "../models/UserModels.js"
 
 // auth
 const loginUser = async (req,res)=>{
@@ -139,11 +139,28 @@ const perfil = async (req,res) => {
     console.log("desde perfil");
     const { user } = req;
     res.json(user);
+    // {
+    //     "_id"
+    //     "name"
+    //     "email"
+    //     "rol"
+    // }
+}
+
+const getAllUsers = async (req,res) => {
+    const users = await UserModel.find().select('_id name email rol');;
+    try{
+      res.json(users);
+    }
+    catch(err){
+      consolee.log(`Error : ${err}`)
+    }
 }
 
 export { 
     changePassword,
     confirmationUserToken,
+    getAllUsers,
     loginUser,
     perfil,
     registerUser,
