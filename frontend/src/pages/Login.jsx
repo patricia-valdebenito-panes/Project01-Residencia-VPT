@@ -3,12 +3,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { Alert } from "../components/Alert";
 
 import ClientAxios from "../config/ClientAxios";
+import useAuth from "../hooks/useAuth";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [alert, setAlert] = useState({});
 
+  const { setAuth } = useAuth();
+  
   const handleReset = () => {
     setEmail("");
     setPassword("");
@@ -41,7 +44,10 @@ export const Login = () => {
     try {
       const { data } = await ClientAxios.post(`/users/login`,{ email, password });
       console.log("respuesta :", data);
+
       setAlert({ msg: data.msg, error: false });
+      setAuth(data);
+      localStorage.setItem('token',data.token);
       handleReset();
     } catch (error) {
       const { data, status } = error.response;
