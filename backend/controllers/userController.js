@@ -1,3 +1,4 @@
+import emailRegister from "../helpers/email.js";
 import generateId from "../helpers/generateId.js";
 import generateJWT from "../helpers/generateJWT.js";
 import UserModel from "../models/UserModels.js"
@@ -43,8 +44,15 @@ const registerUser = async (req,res) => {
     try{
         const user =  new UserModel(req.body);
         user.token = generateId();
-        const userSave = await user.save();
-        res.json({msg:"Registrando usuario."})
+        await user.save();
+
+        emailRegister({
+            name:user.name,
+            email:user.email,
+            token:user.token
+        })
+
+        res.json({msg:"Usuario registrado correctamente. Revisa tu email para confirmar la cuenta."})
     }
     catch(err){
         console.log(`Error : ${err}`);
@@ -71,6 +79,7 @@ const confirmationUserToken = async (req,res) => {
     }
     catch(err){
         console.log(`Error: ${err.message}`);
+        return res.status(403).json({msg:err.message})
     }
 
 }

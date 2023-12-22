@@ -1,6 +1,7 @@
 // dependencies
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 // setting
 import ConectDB from './config/db.js';
 import usersRoutes from './routes/userRoutes.js';
@@ -21,7 +22,23 @@ app.use(express.json());
 dotenv.config();
 
 // db
-ConectDB()
+ConectDB();
+
+//CORS
+const listCORS = [process.env.URL_FRONT];
+const corsOpts =  {
+
+    origin: function(origin,callback) {
+
+     if(listCORS.includes(origin)){
+        callback(null, true);
+     } else{
+        callback(new Erro('Contactar a administrador de aplicación.'));
+     }
+
+    }
+}
+app.use(cors(corsOpts));
 
 // routing
 app.use("/api/users",usersRoutes);
