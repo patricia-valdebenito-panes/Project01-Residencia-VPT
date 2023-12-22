@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Alert } from "../components/Alert";
 
-import axios from "axios";
-const URL = 'http://localhost:4000/api/';
+import ClientAxios from "../config/ClientAxios";
 
 export const Register = () => {
   const [name, setName] = useState('');
@@ -13,10 +12,15 @@ export const Register = () => {
   const [rol, setRol] = useState('');
   const [alert, setAlert] = useState({});
   
+  const handleReset = () => {
+    setName('');
+    setEmail('');
+    setPassword('');
+    setRol('');
+  }
 
   const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log(name,email,password,rol);
       // if([name,email,password,rol].includes('')){
       //   setAlert({ msg:'Completar Campos Incompletos.',error:true });
       //   return
@@ -41,22 +45,25 @@ export const Register = () => {
      setAlert({});
 
      try{
-        const respuesta = await axios.post(`${URL}users`,{name,email,password,rol})
-        console.log("respuesta :",respuesta)
+        const { data } = await ClientAxios.post(`/users`,{name,email,password,rol});
+        console.log("respuesta :",data);
+        setAlert({ msg:data.msg, error:false });
+        handleReset();
       }catch(error){
-      console.log(error)
+        const { data, status } = error.response;
+        setAlert({ msg:data.msg, error:true });
+        console.log(data, status);
      }
 
   }
 
   return (
     <>
-
       <div className="h-screen w-full">
         <div className="flex flex-col items-center flex-1 h-full justify-center px-4 sm:px-0">
           <div className="flex max-w-5xl rounded-lg shadow-lg shadow-primary-300 w-full sm:w-8/10 lg:w-8/10 xl:w-8/10 bg-zinc-100 sm:mx-0">
             <div className="flex flex-col w-full  md:w-1/2 p-6">
-             { alert.error && <Alert alert={alert}/>}
+             { alert.msg && <Alert alert={alert}/>}
               <div className="flex flex-col flex-1 justify-center mb-8 mt-2">
                      <p className="text-3xl text-sky-950 font-medium mx-auto px-1">
                         REGISTRAR USUARIO
@@ -132,7 +139,7 @@ export const Register = () => {
                     <div className="flex flex-col max-w-xs mt-8 mx-auto mb-5">
                       <button
                         type="submit"
-                        className=" bg-sky-700 border rounded-lg hover:bg-blue-700 text-sky-50 text-sm font-semibold py-3 px-4"
+                        className="bg-sky-700 border rounded-lg hover:bg-blue-700 text-sky-50 text-sm font-semibold py-3 px-4"
                       >
                         REGISTRAR
                       </button>
@@ -148,7 +155,7 @@ export const Register = () => {
                 </div>
               </div>
             </div>
-            <div className="flex justify-center md:w-1/2 rounded-r-lg bg-sky-600">
+            <div className="flex justify-center items-center md:w-1/2 rounded-r-lg bg-sky-600">
                 <h1 className="text-6xl text-center text-sky-50 font-semibold">
                       Bienvenido
                       <br />
