@@ -1,11 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthLayout } from "./Layouts/AuthLayout";
+import { SecureRoute } from "./Layouts/SecureRoute";
 
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
+import { Templates } from "./pages/Templates";
+
+
 import { NewPassword } from "./pages/newPassword";
 import { RequestPassword } from "./pages/RequestPassword";
 import { ConfirmeAccount } from "./pages/ConfirmeAccount";
+
 import { AuthProvider } from "./context/AuthProvider";
 
 export default function App() {
@@ -27,7 +32,9 @@ export default function App() {
             </Route>
 
             {/* state auth = unathenticated */}
-            <Route path='/'></Route>
+            <Route path='/templates' element={<SecureRoute/>}>
+              <Route index element={<Templates/>}/>
+            </Route>
           </Routes>
         </AuthProvider>
       </BrowserRouter>
