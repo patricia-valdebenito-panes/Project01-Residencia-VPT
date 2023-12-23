@@ -32,8 +32,9 @@ export default function App() {
             </Route>
 
             {/* state auth = unathenticated */}
-            <Route path='/templates' element={<SecureRoute/>}>
+            <Route path='templates' element={<SecureRoute/>}>
               <Route index element={<Templates/>}/>
+              <Route path="nuevo-usuario" element={<Register />} />
             </Route>
           </Routes>
         </AuthProvider>

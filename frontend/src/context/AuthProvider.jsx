@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import ClientAxios from "../config/ClientAxios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -9,7 +9,9 @@ const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({});
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   useEffect(() => {
+
     const authentificationUser = async () => {
       const token = localStorage.getItem("token");
       if (!token) {
@@ -26,6 +28,7 @@ const AuthProvider = ({ children }) => {
       try {
         const { data } = await ClientAxios("/users/perfil", config);
         setAuth(data);
+        if(pathname === '/registro'){return }
         navigate('/templates');
       } catch (error) {
         setAuth({});

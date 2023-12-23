@@ -1,6 +1,8 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 import useAuth from '../hooks/useAuth'
+import { Header } from '../components/Header';
+import { Sidebar } from '../components/Sidebar';
 
 export const SecureRoute = () => {
     const { auth,loading } = useAuth();
@@ -8,7 +10,7 @@ export const SecureRoute = () => {
 
     if(loading){return  (
         <>
-            <div className='container'>
+            <div className='w-100 flex flex-row mx-auto'>
                Cargando...
             </div>
         </>
@@ -16,9 +18,18 @@ export const SecureRoute = () => {
 
     return (
         <>
-            <div className='container'>
-                { auth._id ? <Outlet/>:<Navigate to={"/"}/>}
-            </div>
+            { auth._id ? (
+                <div className='w-100 mx-auto'>
+                    <Header/>
+                    <div className='md:flex md:min-h-screen flex-row'>
+                        <Sidebar/>
+                        <main className='flex-1 h-screen p-10 border-l-2 border-gray-200 bg-slate-50'>
+                            <Outlet/> 
+                        </main>
+                    </div>
+                </div>): 
+                <Navigate to={"/"}/>
+            }
         </>
     )
 }
