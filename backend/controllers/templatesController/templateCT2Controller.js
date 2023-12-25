@@ -11,12 +11,7 @@ const getTemplates_CT2 = async (req, res) => {
 };
 
 const createTemplate_CT2 = async (req, res) => {
-  // client
-  // PC
-  // template id_
-  // creator
-  // Obs
-  console.log(req,res)
+
   const template = new TemplateCT2(req.body);
   template.creator = req.user._id;
 
@@ -30,8 +25,8 @@ const createTemplate_CT2 = async (req, res) => {
 
 const getTemplate_CT2 = async (req, res) => {
   const { id } = req.params;
-  const template = await TemplateCT2.findById(id).populate("template");
-// console.log("template",template)
+  const template = await TemplateCT2.findOne({ template: id })
+  console.log("template +",template)
   if (!template) {
     const err = new Error("No encontrado.");
     return res.status(404).json({ msg: err.message });

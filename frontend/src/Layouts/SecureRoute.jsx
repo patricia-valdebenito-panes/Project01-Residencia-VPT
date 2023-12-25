@@ -23,7 +23,7 @@ export const SecureRoute = () => {
                     <Header/>
                     <div className='md:flex md:min-h-screen flex-row'>
                         <Sidebar/>
-                        <main className='flex-1 h-screen p-10 border-l-2 border-gray-200 bg-slate-50'>
+                        <main className='flex-1 h-screen px-5 py-3 border-l-2 border-gray-200 bg-slate-50'>
                             <Outlet/> 
                         </main>
                     </div>

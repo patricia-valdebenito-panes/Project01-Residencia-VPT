@@ -14,9 +14,10 @@ import { RequestPassword } from "./pages/RequestPassword";
 import { ConfirmeAccount } from "./pages/ConfirmeAccount";
 
 import { Templates } from "./pages/Templates";
+import { Template } from "./pages/Template";
 import { NewTemplate } from "./pages/NewTemplate";
 import { RegisterChangePosition } from "./pages/RegisterChangePosition";
-import { Template } from "./pages/Template";
+import { RegisterCures } from "./pages/RegisterCures";
 
 // import { Algo } from "./pages/Algo";
 
@@ -45,6 +46,7 @@ export default function App() {
                 <Route index element={<Templates />} />
                 <Route path="nuevo-template" element={<NewTemplate />} />
                 <Route path="cambio-de-posicion" element={<RegisterChangePosition />} />
+                <Route path="curaciones" element={<RegisterCures />} />
                 <Route path=":id" element={<Template />} />
               </Route>
             </Routes>

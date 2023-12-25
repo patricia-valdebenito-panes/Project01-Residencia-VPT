@@ -62,7 +62,7 @@ export const FormNewTemplate = () => {
     <>
       {msg && <Alert alert={alert} />}
       <form
-        className="bg-white py-10 px-5 md:2:1/2 rounded-lg"
+        className="bg-white py-3 px-5 md:2:1/2 rounded-lg"
         onSubmit={handleSubmit}
       >
         <div className="flex flex-col max-w-xs mx-auto mt-5">

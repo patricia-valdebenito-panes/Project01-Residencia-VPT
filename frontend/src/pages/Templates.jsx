@@ -11,6 +11,7 @@ export const Templates = () => {
 
   return (
     <>
+
       <div className="text-3xl font-bold mb-4">Templates</div>
       {templates.length ? (
         <table className="min-w-full border border-gray-300">

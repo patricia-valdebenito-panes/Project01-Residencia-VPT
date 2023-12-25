@@ -16,6 +16,7 @@ const TemplateProvider = ({ children }) => {
 
   const [templates, setTemplates] = useState([]);
   const [template, setTemplate] = useState({});
+  const [templateTC, setTemplateTC] = useState({});
   const [alert, setAlert] = useState([]);
   const [step2, setStep2] = useState("");
 
@@ -53,13 +54,28 @@ const TemplateProvider = ({ children }) => {
       }
 
       const { data } = await ClientAxios(`/templates/${_id}`,config);
+      console.log("data getTemplate:", data);
       setTemplate(data);
 
     } catch (error) {
       console.log("error : ", error);
     }
   }
+  const getTemplateCT = async(_id) => {
+    try {
+      if (!token) {
+        console.log("sin token : ");
+        return;
+      }
 
+      console.log("***`/templates/${CT}/${_id}`",`/templates/cambio-de-posicion/${_id}`);
+      const { data } = await ClientAxios(`/templates/cambio-de-posicion/${_id}`,config);
+      setTemplateTC(data);
+
+    } catch (error) {
+      console.log("error : ", error);
+    }
+  }
   const submitNewTemplate = async (newTemplate) => {
     const { type } = newTemplate;
     const token = localStorage.getItem("token");
@@ -71,14 +87,15 @@ const TemplateProvider = ({ children }) => {
       }
 
       const { data } = await ClientAxios.post("/templates",newTemplate,config);
-
+      console.log("*type",type);
       switch (type) {
         case "CT2":
           localStorage.setItem('new-template',`${type},${data._id}`);
           navigate("/templates/cambio-de-posicion");
           break;
         case "CT3":
-          setStep2("/curaciones");
+          localStorage.setItem('new-template',`${type},${data._id}`);
+          navigate("/templates/curaciones");
           break;
         case "CT4":
           setStep2("/vacunas");
@@ -107,7 +124,7 @@ const TemplateProvider = ({ children }) => {
         return;
       }
       console.log(url)
-      await ClientAxios.post("/templates/cambios-de-posicion",newTemplate,config);
+      await ClientAxios.post(`/templates/${url}`,newTemplate,config);
       localStorage.removeItem('new-template');
 
     } catch (error) {
@@ -120,10 +137,12 @@ const TemplateProvider = ({ children }) => {
       value={{
         alert,
         getTemplate,
+        getTemplateCT,
         showAlert,
         submitNewTemplate,
         submitTemplate,
         template,
+        templateTC,
         templates
       }}
     >
