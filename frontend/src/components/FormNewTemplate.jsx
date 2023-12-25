@@ -18,18 +18,16 @@ export const FormNewTemplate = () => {
   const [type, setType] = useState("");
 
   const { clients } = useClient();
-  const { alert, showAlert,submitTemplate } = useTemplate();
+  const { alert, showAlert, submitNewTemplate } = useTemplate();
   const { auth } = useAuth();
 
   const handleSelectTemplateChange = (event) => {
     event.preventDefault();
-    console.log("clients 5",clients)
     setType(event.target.value);
   };
 
   const handleSelectResidentChange = (event) => {
     event.preventDefault();
-    console.log("clients 5",clients)
     setClient(event.target.value);
   };
 
@@ -40,7 +38,6 @@ export const FormNewTemplate = () => {
   
 
   const handleSubmit = async (event) => {
-    console.log("clients 5",clients)
     event.preventDefault();
 
     if ([type].includes("")) {
@@ -55,7 +52,7 @@ export const FormNewTemplate = () => {
     }
 
     // datos a provider templates
-    submitTemplate({ creador: auth._id, client, type });
+    submitNewTemplate({ creador: auth._id, client, type });
     showAlert({});
 
   };

@@ -16,7 +16,7 @@ const createTemplate_CT2 = async (req, res) => {
   // template id_
   // creator
   // Obs
-
+  console.log(req,res)
   const template = new TemplateCT2(req.body);
   template.creator = req.user._id;
 

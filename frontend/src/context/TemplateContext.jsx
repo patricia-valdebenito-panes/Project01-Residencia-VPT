@@ -7,7 +7,6 @@ const TemplateContext = createContext();
 const TemplateProvider = ({ children }) => {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
-  console.log("navigate: ", navigate);
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -16,6 +15,7 @@ const TemplateProvider = ({ children }) => {
   };
 
   const [templates, setTemplates] = useState([]);
+  const [template, setTemplate] = useState({});
   const [alert, setAlert] = useState([]);
   const [step2, setStep2] = useState("");
 
@@ -35,7 +35,6 @@ const TemplateProvider = ({ children }) => {
         }
 
         const { data } = await ClientAxios("/templates", config);
-        console.log("get plantillas: ", data);
         setTemplates(data);
   
       } catch (error) {
@@ -43,32 +42,26 @@ const TemplateProvider = ({ children }) => {
       }
       // console.log("newTemplate : ",newTemplate);
     };
-
     getTemplates();
   }, []);
 
-  const submitTemplate = async (newTemplate) => {
-    const { type } = newTemplate;
-    switch (type) {
-      case "CT2":
-        setStep2("/templates/cambio-de-posicion");
-        break;
-      case "CT3":
-        setStep2("/curaciones");
-        break;
-      case "CT4":
-        setStep2("/vacunas");
-        break;
-      case "CT5":
-        setStep2("/visita-medica");
-        break;
-      case "CT6":
-        setStep2("/signos-vitales");
-        break;
-      default:
-        console.log(`Sorry, we are out of ${expr}.`);
-    }
+  const getTemplate = async(_id) => {
+    try {
+      if (!token) {
+        console.log("sin token : ");
+        return;
+      }
 
+      const { data } = await ClientAxios(`/templates/${_id}`,config);
+      setTemplate(data);
+
+    } catch (error) {
+      console.log("error : ", error);
+    }
+  }
+
+  const submitNewTemplate = async (newTemplate) => {
+    const { type } = newTemplate;
     const token = localStorage.getItem("token");
 
     try {
@@ -78,9 +71,44 @@ const TemplateProvider = ({ children }) => {
       }
 
       const { data } = await ClientAxios.post("/templates",newTemplate,config);
-      console.log("post template base: ", data);
-      navigate('/templates/cambio-de-posicion')
-  
+
+      switch (type) {
+        case "CT2":
+          localStorage.setItem('new-template',`${type},${data._id}`);
+          navigate("/templates/cambio-de-posicion");
+          break;
+        case "CT3":
+          setStep2("/curaciones");
+          break;
+        case "CT4":
+          setStep2("/vacunas");
+          break;
+        case "CT5":
+          setStep2("/visita-medica");
+          break;
+        case "CT6":
+          setStep2("/signos-vitales");
+          break;
+        default:
+          console.log(`Sorry, we are out of ${expr}.`);
+      }
+      // actualizar listado de proyectos
+      // actualizar state te templates
+      setTemplates([...templates,data]);
+    } catch (error) {
+      console.log("error : ", error);
+    }
+  };
+
+  const submitTemplate = async (newTemplate,url) => {
+    const token = localStorage.getItem("token");
+    try {
+      if (!token) {
+        return;
+      }
+      console.log(url)
+      await ClientAxios.post("/templates/cambios-de-posicion",newTemplate,config);
+      localStorage.removeItem('new-template');
 
     } catch (error) {
       console.log("error : ", error);
@@ -91,8 +119,11 @@ const TemplateProvider = ({ children }) => {
     <TemplateContext.Provider
       value={{
         alert,
+        getTemplate,
         showAlert,
+        submitNewTemplate,
         submitTemplate,
+        template,
         templates
       }}
     >

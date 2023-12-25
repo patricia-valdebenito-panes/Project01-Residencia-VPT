@@ -1,95 +1,101 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Select } from "./Select";
-import useClient from "../hooks/useClient";
-import { Alert } from "./Alert";
 import useAuth from "../hooks/useAuth";
+import { Alert } from "./Alert";
+import useTemplate from "../hooks/useTemplate";
 
-
+const optionPC = [
+  { value: "AM", label: "AM" },
+  { value: "PM", label: "PM" },
+];
 export const FormChangePosition = () => {
-  const [client, setClient] = useState("");
-  const [type, setType] = useState("");
+  const [pc, setPC] = useState("");
+  const [observations, setOobservations] = useState("");
 
-  const { alert, clients, showAlert, submitClient } = useClient();
-  const { auth } = useAuth();
+  const { template, getTemplate, submitTemplate } = useTemplate();
+  const { _id, creator, client } = template;
 
-  const handleSelectTemplateChange = (event) => {
-    //console.log("handleSelectTemplateChange : ",event.target.value);
+  const handleSelectPC = (event) => {
     event.preventDefault();
-    setType(event.target.value);
+    setPC(event.target.value);
   };
 
-  const handleSelectResidentChange = (event) => {
+  useEffect(() => {
+    const value = localStorage.getItem("new-template").split(",")[1];
+    const getValue = async () => {
+      await getTemplate(value);
+      try {
+        console.log("si pasa");
+      } catch (error) {
+        console.log("no pasa");
+      }
+    };
+    getValue();
+  }, []);
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-    setClient(event.target.value);
+
+    const newRegister = {
+      "client":client,
+      "PC":pc,
+      "template":_id,
+      "creator":creator,
+      "Obs":observations
+    };
+    submitTemplate(newRegister,'/cambios-de-posicion');
   };
-
-  const transformedClients = clients?.map((client) => ({
-    value: client._id,
-    label: client.name,
-  }));
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    console.log(client);
-    console.log(type);
-    console.log(auth._id);
-
-    if ([type].includes("")) {
-      showAlert({ msg: "Debe Seleccionar un template", error: true });
-      return;
-    }
-
-    if ([client].includes("")) {
-      showAlert({ msg: "Debe Seleccionar un Residente", error: true });
-      //   setInformationType({ msg: "INFORMACION/EJEMPLO", read: true });
-      return;
-    }
-
-    // datos a provider Clients
-    submitClient({ creador: auth._id, client, type });
-
-    showAlert({});
-  };
-  const { msg } = alert;
-  console.log("msg :", msg);
+  // const { msg } = alert;
+  // console.log("msg :", msg);
   return (
     <>
-    RegisterChangePosition
-    RegisterChangePosition
-    RegisterChangePosition
-      {/* {msg && <Alert alert={alert} />}
+      PASO 2:
+      {/* {msg && <Alert alert={alert} />} */}
+      {/* {template ? (
+        <p>{JSON.stringify(template)}</p>
+      ) : (
+        <p>actualizando template</p>
+      )} */}
       <form
         className="bg-white py-10 px-5 md:2:1/2 rounded-lg"
         onSubmit={handleSubmit}
       >
         <div className="flex flex-col max-w-xs mx-auto mt-5">
           <Select
-            label={"residentes"}
-            values={transformedClients}
-            // value={[]}
-            selectedValue={client}
-            onChange={handleSelectResidentChange}
-          />
-        </div>
-        <div className="w-full mt-4 mx-auto max-w-xs">
-          <Select
-            label={"templates"}
-            values={templates}
-            selectedValue={type}
-            onChange={handleSelectTemplateChange}
+            label={"PC"}
+            values={optionPC}
+            selectedValue={pc}
+            onChange={handleSelectPC}
           />
         </div>
 
+        <div className="flex flex-col mx-auto max-w-xs mt-5">
+          <label
+            htmlFor="observations"
+            className="text-zinc-950 mb-1 font-medium"
+          >
+            OBSERVACIONES:
+          </label>
+          <input
+            id="observations"
+            type="text"
+            className="flex-grow min-h-80 px-2 rounded border border-grey-300"
+            name="observations"
+            value={observations}
+            required
+            placeholder="Ingresar Observaciones"
+            onChange={(e) => setOobservations(e.target.value)}
+          />
+        </div>
         <div className="flex flex-col max-w-xs mt-8 mx-auto mb-5">
           <button
             type="submit"
             className="w-full bg-sky-700 border cursor-pointer rounded-lg hover:bg-sky-800 text-sky-50 text-sm font-semibold py-3 px-4 transition-colors"
           >
-            Continuar
+            Guardar
           </button>
         </div>
-      </form> */}
+      </form>
     </>
   );
 };

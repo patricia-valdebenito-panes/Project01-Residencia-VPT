@@ -13,8 +13,8 @@ export const Header = () => {
             placeholder='Ingresar busqueda'
             className='rounded-lg w-11/12 m-2 lg:w-1/2 block p-3 border'/>
             <div className='flex items-center gap-4'>
-                <Link className='/templates'>Templates</Link>
-                <Link className='/list-users'>Residentes</Link>
+                <Link to='/templates'>Templates</Link>
+                <Link to='/list-users'>Residentes</Link>
                 <button className='text-white bg-sky-600 rounded-md font-bold p-2 md:p-3'>Cerrar Sesión</button>
             </div>
         </div>

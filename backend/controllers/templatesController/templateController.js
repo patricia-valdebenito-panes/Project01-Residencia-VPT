@@ -39,7 +39,7 @@ const getTemplates = async (req, res) => {
   }
 };
 
-const createTemplate = async (req, res, next) => {
+const createTemplate = async (req, res) => {
   // type, creatorUser, contributors
   const template = new TemplateModel(req.body);
   template.creator = req.user._id;
@@ -56,13 +56,12 @@ const createTemplate = async (req, res, next) => {
   }
 
   try {
-    // const templateSave =
-    await template.save();
-    req.template = await TemplateModel.findById(template._id).select(
-      " -createdAt -updatedAt -__v"
-    );
-    return next();
-    // res.json(templateSave);
+     const templateSave = await template.save();
+    // req.template = await TemplateModel.findById(template._id).select(
+    //   " -createdAt -updatedAt -__v"
+    // );
+
+     res.json(templateSave);
   } catch (err) {
     console.log(`Error : ${err}`);
   }

@@ -1,5 +1,4 @@
 export const Select = ({ label, values, selectedValue, onChange}) => {
-   console.log(selectedValue)
   return (
       <div>
         <label 
@@ -23,20 +22,3 @@ export const Select = ({ label, values, selectedValue, onChange}) => {
       </div>
     );
   };
-
-
-// export const Select = ({ values, selectedValue, onChange }) => {
-//     return (
-//       <div>
-//         <label htmlFor="select">Selecciona:</label>
-//         <select id="select" value={selectedValue} onChange={onChange}>
-//           <option value="">Selecciona una opción</option>
-//           {values.map((option) => (
-//             <option key={option.value} value={option.value}>
-//               {option.label}
-//             </option>
-//           ))}
-//         </select>
-//       </div>
-//     );
-//   };
