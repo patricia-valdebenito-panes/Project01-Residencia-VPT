@@ -43,7 +43,7 @@ export const FormChangePosition = () => {
       "creator":creator,
       "Obs":observations
     };
-    submitTemplate(newRegister,'/cambios-de-posicion');
+    submitTemplate(newRegister,'cambios-de-posicion');
   };
   // const { msg } = alert;
   // console.log("msg :", msg);

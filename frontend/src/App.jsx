@@ -19,6 +19,9 @@ import { NewTemplate } from "./pages/NewTemplate";
 import { RegisterChangePosition } from "./pages/RegisterChangePosition";
 import { RegisterCures } from "./pages/RegisterCures";
 import { RegisterVaccines } from "./pages/RegisterVaccines";
+import { RegisterVisitMedical } from "./pages/RegisterVisitMedical";
+import { RegisterVitalSigns } from "./pages/RegisterVitalSigns";
+
 
 // import { Algo } from "./pages/Algo";
 
@@ -49,6 +52,8 @@ export default function App() {
                 <Route path="cambio-de-posicion" element={<RegisterChangePosition />} />
                 <Route path="curaciones" element={<RegisterCures />} />
                 <Route path="vacunas" element={<RegisterVaccines />} />
+                <Route path="visitas-medicas" element={<RegisterVisitMedical />} />
+                <Route path="signos-vitales" element={<RegisterVitalSigns />} />
                 <Route path=":id" element={<Template />} />
               </Route>
             </Routes>

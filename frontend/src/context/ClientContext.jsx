@@ -17,8 +17,6 @@ const ClientProvider = ({ children }) => {
 
   const [clients, setClients] = useState([]);
   const [client, setClient] = useState([]);
-  // const [alert, setAlert] = useState([]);
-  // const [step2, setStep2] = useState('');
 
   const showAlert = (alert) => {
     setAlert(alert);
@@ -36,7 +34,6 @@ const ClientProvider = ({ children }) => {
         }
 
         const { data } = await ClientAxios("/client/list-client", config);
-        console.log("get clients list : ", data);
         setClients(data);
       } catch (error) {
         console.log("error : ", error);
@@ -49,7 +46,6 @@ const ClientProvider = ({ children }) => {
   }, []);
 
   const getClient = async (_id) => {
-    console.log("get __id : ", _id);
     try {
       if (!token) {
         console.log("sin token : ");
@@ -57,43 +53,11 @@ const ClientProvider = ({ children }) => {
       }
 
       const { data } = await ClientAxios(`/client/${_id}`, config);
-      // console.log("get client : ", data);
       setClient(data);
     } catch (error) {
       console.log("error : ", error);
     }
   };
-
-  // const submit___ = async (dat) => {
-  //   const token = localStorage.getItem("token");
-  //   const { type } = newTemplate;
-
-  //   switch () {
-  //     case "":
-  //       set('');
-  //       break;
-  //     case "":
-  //       set('');
-  //       break;
-  //     default:
-  //       console.log(`Sorry, we are out of ${expr}.`);
-  //   }
-  //   try {
-
-  //     if (!token) {
-  //       console.log("sin token : ");
-  //       return;
-  //     }
-
-  //     const { data } = await ClientAxios.post("",dat, config);
-  //     console.log("post template base: ", data);
-
-  //     data._id && navigate()
-
-  //   } catch (error) {
-  //     console.log("error : ", error);
-  //   }
-  // };
 
   return (
     <ClientContext.Provider

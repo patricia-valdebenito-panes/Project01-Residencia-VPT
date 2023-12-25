@@ -68,7 +68,6 @@ const TemplateProvider = ({ children }) => {
         return;
       }
 
-      console.log("***`/templates/${CT}/${_id}`",`/templates/cambio-de-posicion/${_id}`);
       const { data } = await ClientAxios(`/templates/cambio-de-posicion/${_id}`,config);
       setTemplateTC(data);
 
@@ -88,24 +87,22 @@ const TemplateProvider = ({ children }) => {
 
       const { data } = await ClientAxios.post("/templates",newTemplate,config);
       console.log("*type",type);
+      localStorage.setItem('new-template',`${type},${data._id}`);
       switch (type) {
         case "CT2":
-          localStorage.setItem('new-template',`${type},${data._id}`);
           navigate("/templates/cambio-de-posicion");
           break;
         case "CT3":
-          localStorage.setItem('new-template',`${type},${data._id}`);
           navigate("/templates/curaciones");
           break;
         case "CT4":
-          localStorage.setItem('new-template',`${type},${data._id}`);
           navigate("/templates/vacunas");
           break;
         case "CT5":
-          navigate("/templates/curaciones");
+          navigate("/templates/visitas-medicas");
           break;
         case "CT6":
-          setStep2("/signos-vitales");
+          navigate("/templates/signos-vitales");
           break;
         default:
           console.log(`Sorry, we are out of ${expr}.`);

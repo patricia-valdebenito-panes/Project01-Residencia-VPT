@@ -6,7 +6,6 @@ import { Sidebar } from '../components/Sidebar';
 
 export const SecureRoute = () => {
     const { auth,loading } = useAuth();
-    console.log("auth - SecureRoute :",auth);
 
     if(loading){return  (
         <>
