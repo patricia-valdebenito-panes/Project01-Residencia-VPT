@@ -11,10 +11,10 @@ const getTemplates_CT2 = async (req, res) => {
 };
 
 const createTemplate_CT2 = async (req, res) => {
-
+  console.log("template 2 req: ", req);
   const template = new TemplateCT2(req.body);
   template.creator = req.user._id;
-
+  console.log("template 2 : ", template);
   try {
     const CT2_Save = await template.save();
     res.json(CT2_Save);

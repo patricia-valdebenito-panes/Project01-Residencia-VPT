@@ -13,7 +13,7 @@ const router = express.Router();
 router.route("/")
  .get(checkAuth, getTemplates_CT2) //LISTA
  .post(checkAuth, createTemplate_CT2);
-
+ 
 router.route("/:id")
   .get(checkAuth, getTemplate_CT2)
 //   .put(checkAuth, editTemplate_CT2)

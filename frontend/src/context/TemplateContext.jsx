@@ -87,21 +87,27 @@ const TemplateProvider = ({ children }) => {
 
       const { data } = await ClientAxios.post("/templates",newTemplate,config);
       console.log("*type",type);
-      localStorage.setItem('new-template',`${type},${data._id}`);
+      console.log("*data",data);
+      console.log("*newTemplate",newTemplate);
       switch (type) {
         case "CT2":
+          localStorage.setItem('new-template',`${type},${data._id}`);
           navigate("/templates/cambio-de-posicion");
           break;
         case "CT3":
+          localStorage.setItem('new-template',`${type},${data._id}`);
           navigate("/templates/curaciones");
           break;
         case "CT4":
+          localStorage.setItem('new-template',`${type},${data._id}`);
           navigate("/templates/vacunas");
           break;
         case "CT5":
+          localStorage.setItem('new-template',`${type},${data._id}`);
           navigate("/templates/visitas-medicas");
           break;
         case "CT6":
+          localStorage.setItem('new-template',`${type},${data._id}`);
           navigate("/templates/signos-vitales");
           break;
         default:
@@ -121,10 +127,10 @@ const TemplateProvider = ({ children }) => {
       if (!token) {
         return;
       }
-      console.log(`/templates/${url}`)
-
+      console.log("*type",url);
       const { data } = await ClientAxios.post(`/templates/${url}`,newTemplate,config);
-      console.log("data vacunas",data);
+      console.log("data submitTemplate",data);
+      console.log("*newTemplate",newTemplate);
       localStorage.removeItem('new-template');
 
     } catch (error) {
