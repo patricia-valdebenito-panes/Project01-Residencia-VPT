@@ -98,10 +98,11 @@ const TemplateProvider = ({ children }) => {
           navigate("/templates/curaciones");
           break;
         case "CT4":
-          setStep2("/vacunas");
+          localStorage.setItem('new-template',`${type},${data._id}`);
+          navigate("/templates/vacunas");
           break;
         case "CT5":
-          setStep2("/visita-medica");
+          navigate("/templates/curaciones");
           break;
         case "CT6":
           setStep2("/signos-vitales");
@@ -123,8 +124,10 @@ const TemplateProvider = ({ children }) => {
       if (!token) {
         return;
       }
-      console.log(url)
-      await ClientAxios.post(`/templates/${url}`,newTemplate,config);
+      console.log(`/templates/${url}`)
+
+      const { data } = await ClientAxios.post(`/templates/${url}`,newTemplate,config);
+      console.log("data vacunas",data);
       localStorage.removeItem('new-template');
 
     } catch (error) {

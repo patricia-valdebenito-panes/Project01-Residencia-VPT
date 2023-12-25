@@ -10,7 +10,7 @@ import clientUserRoutes from './routes/clientUserRoutes.js';
 import templatesRoutes from './routes/templateRoutes.js';
 import templatesCT2Routes from './routes/templateCT2Routes.js';
 import templatesCT3Routes from './routes/templateCT3Routes.js';
-// import templatesCT4Routes from './routes/templateCT4Routes.js';
+import templatesCT4Routes from './routes/templateCT4Routes.js';
 // import templatesCT5Routes from './routes/templateCT5Routes.js';
 // import templatesCT6Routes from './routes/templateCT6Routes.js';
 // import templatesCT7Routes from './routes/templateCT7Routes.js';
@@ -49,7 +49,7 @@ app.use("/api/client",clientUserRoutes);//ct1 : perfil
 app.use("/api/templates/cambio-de-posicion",templatesCT2Routes);
 app.use("/api/templates/curaciones",templatesCT3Routes);
 
-// app.use("/vacunas",templatesCT4Routes);
+app.use("/api/templates/vacunas",templatesCT4Routes);
 // app.use("/visita-medica",templatesCT5Routes);
 // app.use("/signos-vitales",templatesCT6Routes);
 // app.use("/otros",templatesCT6Routes);

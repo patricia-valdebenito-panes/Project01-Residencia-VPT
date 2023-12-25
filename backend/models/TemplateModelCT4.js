@@ -19,10 +19,10 @@ const CT_4_Schema = mongoose.Schema(
       type: String,
       required: true
     },
-    type:{
+    clasificationVaccine:{
       type: String,
       required: true,
-      enum:["Vacuna","Complejo Vit. B12 (Neurobionta)","Otro"]
+      // enum:["Vacuna","Complejo Vit. B12 (Neurobionta)","Otro"]
     },
     // Próx. Fecha de vacuna
     applyNext: {

@@ -18,6 +18,7 @@ import { Template } from "./pages/Template";
 import { NewTemplate } from "./pages/NewTemplate";
 import { RegisterChangePosition } from "./pages/RegisterChangePosition";
 import { RegisterCures } from "./pages/RegisterCures";
+import { RegisterVaccines } from "./pages/RegisterVaccines";
 
 // import { Algo } from "./pages/Algo";
 
@@ -47,6 +48,7 @@ export default function App() {
                 <Route path="nuevo-template" element={<NewTemplate />} />
                 <Route path="cambio-de-posicion" element={<RegisterChangePosition />} />
                 <Route path="curaciones" element={<RegisterCures />} />
+                <Route path="vacunas" element={<RegisterVaccines />} />
                 <Route path=":id" element={<Template />} />
               </Route>
             </Routes>
