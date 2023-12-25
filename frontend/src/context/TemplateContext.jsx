@@ -52,7 +52,11 @@ const TemplateProvider = ({ children }) => {
         console.log("sin token : ");
         return;
       }
-
+      if (!_id) {
+        console.log("sin _id : ");
+        return;
+      }
+      
       const { data } = await ClientAxios(`/templates/${_id}`,config);
       console.log("data getTemplate:", data);
       setTemplate(data);

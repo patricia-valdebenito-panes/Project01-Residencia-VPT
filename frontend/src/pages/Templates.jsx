@@ -8,7 +8,33 @@ import ReactPaginate from "react-paginate";
 export const Templates = () => {
   const { templates } = useTemplate();
   const [currentPage, setCurrentPage] = useState(0);
+
   const itemsPerPage = window.innerWidth >= 768 ? 8 : 5;
+
+  const getType = (type) => {
+    let nameType ='';
+    switch (type) {
+      case "CT2":
+        nameType = "Cambio de posición";
+        break;
+      case "CT3":
+        nameType = "Curación";
+        break;
+      case "CT4":
+        nameType = "Vacuna";
+        break;
+      case "CT5":
+        nameType = "Visita Médica";
+        break;
+      case "CT6":
+        nameType = "Signos Vitales";
+        break;
+      default:
+        console.log(`Sorry, we are out of ${expr}.`);
+    }
+    return nameType;
+    
+  };
 
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
@@ -23,6 +49,7 @@ export const Templates = () => {
     currentPage * itemsPerPage,
     (currentPage + 1) * itemsPerPage
   );
+
   let date;
 
   return (
@@ -45,10 +72,10 @@ export const Templates = () => {
                 const { createdAt, _id, type, updatedAt } = template;
                 date = createdAt === updatedAt ? createdAt : updatedAt;
                 const { dayDate, dayHour } = formatDateAndTime(date);
-
+                
                 return (
                   <tr key={template._id} className="border-b border-gray-300">
-                    <td className="p-3 text-start">{type}</td>
+                    <td className="p-3 text-start">{ getType(type)}</td>
                     {template?.client && (
                       <ItemClientTable identify={template.client} />
                     )}
@@ -79,9 +106,15 @@ export const Templates = () => {
               onPageChange={handlePageChange}
               containerClassName={"pagination flex items-center space-x-2"}
               activeClassName={"bg-sky-700 text-white px-3 py-2 rounded"}
-              pageClassName={"hover:bg-sky-200 cursor-pointer transition-all duration-200 ease-in-out px-3 py-2 rounded"}
-              previousClassName={"hover:bg-sky-200 cursor-pointer transition-all duration-200 ease-in-out px-3 py-2 rounded"}
-              nextClassName={"hover:bg-sky-200 cursor-pointer transition-all duration-200 ease-in-out px-3 py-2 rounded"}
+              pageClassName={
+                "hover:bg-sky-200 cursor-pointer transition-all duration-200 ease-in-out px-3 py-2 rounded"
+              }
+              previousClassName={
+                "hover:bg-sky-200 cursor-pointer transition-all duration-200 ease-in-out px-3 py-2 rounded"
+              }
+              nextClassName={
+                "hover:bg-sky-200 cursor-pointer transition-all duration-200 ease-in-out px-3 py-2 rounded"
+              }
             />
           </div>
         </>
