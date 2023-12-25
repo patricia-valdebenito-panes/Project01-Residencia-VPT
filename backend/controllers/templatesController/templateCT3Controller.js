@@ -30,7 +30,7 @@ const getSubSectionTemplate_CT3 = async (req, res) => {};
 const getTemplate_CT3 = async (req, res) => {
   const { id } = req.params;
   const template = await TemplateCT3.findOne({ template: id })
-  console.log("template ct3 +",template)
+
   if (!template) {
     const err = new Error("No encontrado.");
     return res.status(404).json({ msg: err.message });
