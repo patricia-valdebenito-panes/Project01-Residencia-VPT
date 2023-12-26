@@ -40,9 +40,6 @@ export const Clients = () => {
             </thead>
             <tbody>
               {paginatedTemplates.map((client) => {
-           
-            
-
                 
                 return (
                   <tr key={client._id} className="border-b border-gray-300">

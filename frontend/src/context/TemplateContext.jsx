@@ -156,16 +156,15 @@ const TemplateProvider = ({ children }) => {
       if (!token) {
         return;
       }
-      console.log("*type",url);
       const { data } = await ClientAxios.post(`/templates/${url}`,newTemplate,config);
-      console.log("data submitTemplate",data);
-      console.log("*newTemplate",newTemplate);
+
       localStorage.removeItem('new-template');
       navigate('/templates')
     } catch (error) {
       console.log("error : ", error);
     }
   };
+
 
   return (
     <TemplateContext.Provider

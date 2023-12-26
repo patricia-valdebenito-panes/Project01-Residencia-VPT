@@ -44,13 +44,9 @@ export const FormVaccines = () => {
   // console.log("msg :", msg);
   return (
     <>
-      PASO 2:
+      
       {/* {msg && <Alert alert={alert} />} */}
-      {/* {template ? (
-        <p>{JSON.stringify(template)}</p>
-      ) : (
-        <p>actualizando template</p>
-      )} */}
+
       <form
         className="bg-white py-10 px-5 md:2:1/2 rounded-lg"
         onSubmit={handleSubmit}
@@ -111,7 +107,7 @@ export const FormVaccines = () => {
           <input
             id="observations"
             type="text"
-            className="flex-grow min-h-80 px-2 rounded border border-grey-300"
+            className="flex-grow min-h-48 px-2 rounded border border-grey-300"
             name="observations"
             value={observations}
             required

@@ -7,33 +7,17 @@ import useAuth from "../hooks/useAuth";
 
 export const FormNewClient = () => {
   const [client, setClient] = useState("");
-  const [type, setType] = useState("");
 
   const { alert, clients, showAlert, submitClient } = useClient();
   const { auth } = useAuth();
 
-  const handleSelectTemplateChange = (event) => {
-    //console.log("handleSelectTemplateChange : ",event.target.value);
-    event.preventDefault();
-    setType(event.target.value);
-  };
 
-  const handleSelectResidentChange = (event) => {
-    event.preventDefault();
-    setClient(event.target.value);
-  };
 
-  const transformedClients = clients?.map((client) => ({
-    value: client._id,
-    label: client.name,
-  }));
+
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    console.log(client);
-    console.log(type);
-    console.log(auth._id);
 
     if ([type].includes("")) {
       showAlert({ msg: "Debe Seleccionar un template", error: true });
@@ -55,7 +39,7 @@ export const FormNewClient = () => {
   console.log("msg :", msg);
   return (
     <>
-{msg && <Alert alert={alert} />}
+      {msg && <Alert alert={alert} />}
       <form
         className="bg-white py-3 px-5 md:2:1/2 rounded-lg"
         onSubmit={handleSubmit}

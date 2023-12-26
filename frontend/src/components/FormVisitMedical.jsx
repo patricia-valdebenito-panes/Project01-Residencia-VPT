@@ -48,7 +48,7 @@ export const FormVisitMedical = () => {
   // console.log("msg :", msg);
   return (
     <>
-      PASO 2:
+
       {/* {msg && <Alert alert={alert} />} */}
 
       <form

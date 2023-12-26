@@ -41,7 +41,6 @@ const ClientProvider = ({ children }) => {
 
       // console.log("newTemplate : ",newTemplate);
     };
-
     getClients();
   }, []);
 
@@ -59,12 +58,26 @@ const ClientProvider = ({ children }) => {
     }
   };
 
+  const submitResident = async (newTemplate) => {
+    const token = localStorage.getItem("token");
+    try {
+      if (!token) {
+        return;
+      }
+      const { data } = await ClientAxios.post(`/client/new-client`,newTemplate,config);
+      setClients([...clients,data]);
+      navigate('/residentes')
+    } catch (error) {
+      console.log("error : ", error);
+    }
+  };
   return (
     <ClientContext.Provider
       value={{
         client,
         clients,
         getClient,
+        submitResident
       }}
     >
       {children}

@@ -53,7 +53,6 @@ export const FormCures = () => {
   // console.log("msg :", msg);
   return (
     <>
-      PASO 2:
       {/* {msg && <Alert alert={alert} />} */}
       <form
         className="bg-white py-3 px-5 md:2:1/2 rounded-lg"
@@ -188,7 +187,7 @@ export const FormCures = () => {
           <input
             id="observations"
             type="text"
-            className="flex-grow min-h-80 px-2 rounded border border-grey-300"
+            className="flex-grow min-h-48 px-2 rounded border border-grey-300"
             name="observations"
             value={observations}
             required
