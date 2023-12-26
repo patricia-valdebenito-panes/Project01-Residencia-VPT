@@ -52,7 +52,7 @@ const TemplateProvider = ({ children }) => {
         console.log("sin token : ");
         return;
       }
-      if (!_id) {
+      if (!_id || _id === undefined) {
         console.log("sin _id : ");
         return;
       }
@@ -65,14 +65,39 @@ const TemplateProvider = ({ children }) => {
       console.log("error : ", error);
     }
   }
-  const getTemplateCT = async(_id) => {
+  const getTemplateCT = async(_id,type) => {
+    let url='';
     try {
       if (!token) {
         console.log("sin token : ");
         return;
       }
+      console.log(type)
+      switch (type) {
+        case "CT2":
+          url = "cambio-de-posicion";
+          break;
+        case "CT3":
 
-      const { data } = await ClientAxios(`/templates/cambio-de-posicion/${_id}`,config);
+          url = "curaciones";
+          break;
+        case "CT4":
+
+          url = "vacunas";
+          break;
+        case "CT5":
+
+          url = "visitas-medicas";
+          break;
+        case "CT6":
+  
+          url = "signos-vitales";
+          break;
+        default:
+          console.log(`Sorry, we are out of ${expr}.`);
+      }
+      console.log("/templates/${url}/${_id} ::", `/templates/${url}/${_id}`);
+      const { data } = await ClientAxios(`/templates/${url}/${_id}`,config);
       setTemplateTC(data);
 
     } catch (error) {
@@ -136,7 +161,7 @@ const TemplateProvider = ({ children }) => {
       console.log("data submitTemplate",data);
       console.log("*newTemplate",newTemplate);
       localStorage.removeItem('new-template');
-
+      navigate('/templates')
     } catch (error) {
       console.log("error : ", error);
     }

@@ -16,11 +16,16 @@ import { ConfirmeAccount } from "./pages/ConfirmeAccount";
 import { Templates } from "./pages/Templates";
 import { Template } from "./pages/Template";
 import { NewTemplate } from "./pages/NewTemplate";
+import { NewResident } from "./pages/NewResident";
+
 import { RegisterChangePosition } from "./pages/RegisterChangePosition";
 import { RegisterCures } from "./pages/RegisterCures";
 import { RegisterVaccines } from "./pages/RegisterVaccines";
 import { RegisterVisitMedical } from "./pages/RegisterVisitMedical";
 import { RegisterVitalSigns } from "./pages/RegisterVitalSigns";
+
+import { Clients } from "./pages/Clients";
+
 
 
 // import { Algo } from "./pages/Algo";
@@ -55,6 +60,11 @@ export default function App() {
                 <Route path="visitas-medicas" element={<RegisterVisitMedical />} />
                 <Route path="signos-vitales" element={<RegisterVitalSigns />} />
                 <Route path=":id" element={<Template />} />
+              </Route>
+
+              <Route path="residentes" element={<SecureRoute />}>
+                <Route index element={<Clients />} />
+                <Route path="nuevo-residente" element={<NewResident />} />
               </Route>
             </Routes>
             </TemplateProvider>

@@ -90,7 +90,7 @@ export const FormVaccines = () => {
         </div>
         <div className="flex flex-col mx-auto max-w-xs mt-5">
           <label htmlFor="cureNext" className="text-zinc-950 mb-1 font-medium">
-            Próxima Cura:
+            Próxima Vacuna:
           </label>
           <input
             id="cureNext"

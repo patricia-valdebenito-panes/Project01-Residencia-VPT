@@ -12,14 +12,14 @@ export const Template = () => {
   useEffect(() => {
     const dataTC = async () => {
       await getTemplateCT(params.id);
-      await getClient(templateTC.client);
+      await getClient(templateTC.client, templateTC.type);
     };
     dataTC();
   }, []);
 
   return (
     <>
-      <div className="text-3xl font-bold mb-4">Templates</div>
+      <div className="text-3xl font-bold mb-4">Template:</div>
       {templateTC ? (
         <table className="min-w-full border border-gray-300">
           <thead className="bg-gray-200 ">

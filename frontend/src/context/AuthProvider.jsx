@@ -30,8 +30,17 @@ const AuthProvider = ({ children }) => {
       try {
         const { data } = await ClientAxios("/users/perfil", config);
         setAuth(data);
-        if(pathname === '/registro'){return }
-        navigate('/templates');
+        if(pathname === '/residentes'){
+                  console.log("? ruta :",pathname)
+          navigate('/residentes');
+        }else{       
+           navigate('/templates');
+                   // if(pathname === '/registro'){return }
+        console.log("? ruta :",pathname)
+          
+          }
+
+
       } catch (error) {
         setAuth({});
         console.log("error : ", error);
