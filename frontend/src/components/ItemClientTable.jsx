@@ -13,6 +13,6 @@ useEffect(() => {
 }, [])
 
   return (
-    <td className="p-2 text-start">{client?.name}</td>
+    <td className="p-2 text-start text-sm md:text-base">{client?.name}</td>
   )
 }

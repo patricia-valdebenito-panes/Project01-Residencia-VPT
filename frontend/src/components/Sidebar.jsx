@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const Sidebar = () => {
   const name = "Karine";
   return (
-    <aside className="md:w-80 lg:w-96 px-5">
+    <aside className="md:min-h-80 py-3 border-l-2 border-gray-200 bg-slate-50 md:w-80 lg:w-96 px-5">
       <p className="text-xl font-bold mb-8 mt-5">Hola {name}</p>
 
       <Link

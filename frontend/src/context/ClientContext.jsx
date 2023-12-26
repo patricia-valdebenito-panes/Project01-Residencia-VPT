@@ -17,6 +17,7 @@ const ClientProvider = ({ children }) => {
 
   const [clients, setClients] = useState([]);
   const [client, setClient] = useState([]);
+  const [alert, setAlert] = useState([]);
 
   const showAlert = (alert) => {
     setAlert(alert);
@@ -25,25 +26,21 @@ const ClientProvider = ({ children }) => {
     // },6000)
   };
 
-  useEffect(() => {
-    const getClients = async () => {
-      try {
-        if (!token) {
-          console.log("sin token : ");
-          return;
-        }
-
-        const { data } = await ClientAxios("/client/list-client", config);
-        setClients(data);
-      } catch (error) {
-        console.log("error : ", error);
+  const getClients = async () => {
+    try {
+      if (!token) {
+        console.log("sin token : ");
+        return;
       }
 
-      // console.log("newTemplate : ",newTemplate);
-    };
-    getClients();
-  }, []);
-
+      const { data } = await ClientAxios("/client/list-client", config);
+      setClients(data);
+    } catch (error) {
+      console.log("error : ", error);
+    }
+    // console.log("newTemplate : ",newTemplate);
+  };
+  
   const getClient = async (_id) => {
     try {
       if (!token) {
@@ -66,17 +63,28 @@ const ClientProvider = ({ children }) => {
       }
       const { data } = await ClientAxios.post(`/client/new-client`,newTemplate,config);
       setClients([...clients,data]);
+      getClients();
       navigate('/residentes')
     } catch (error) {
       console.log("error : ", error);
     }
   };
+  
+  useEffect(() => {
+    setTimeout(()=>{
+      getClients();
+    },2000)
+  }, []);
+
+
   return (
     <ClientContext.Provider
       value={{
+        alert,
         client,
         clients,
         getClient,
+        showAlert,
         submitResident
       }}
     >

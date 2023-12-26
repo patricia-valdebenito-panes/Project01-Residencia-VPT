@@ -68,7 +68,7 @@ export const Register = () => {
                      <p className="text-3xl text-sky-950 font-medium mx-auto px-1">
                         REGISTRAR USUARIO
                       </p>
-                <div className="w-full mt-4">
+                <div className="w-full mt-2">
                   <form 
                   className="form-horizontal w-7/10 mx-auto"
                   onSubmit={handleSubmit}>

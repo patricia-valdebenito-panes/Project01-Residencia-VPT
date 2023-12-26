@@ -26,26 +26,21 @@ const TemplateProvider = ({ children }) => {
     //   setAlert({});
     // },6000)
   };
-
-  useEffect(() => {
-    const getTemplates = async () => {
-      try {
-        if (!token) {
-          console.log("sin token : ");
-          return;
-        }
-
-        const { data } = await ClientAxios("/templates", config);
-        setTemplates(data);
-  
-      } catch (error) {
-        console.log("error : ", error);
+  const getTemplates = async () => {
+    try {
+      if (!token) {
+        console.log("sin token : ");
+        return;
       }
-      // console.log("newTemplate : ",newTemplate);
-    };
-    getTemplates();
-  }, []);
 
+      const { data } = await ClientAxios("/templates", config);
+      setTemplates(data);
+
+    } catch (error) {
+      console.log("error : ", error);
+    }
+    // console.log("newTemplate : ",newTemplate);
+  };
   const getTemplate = async(_id) => {
     try {
       if (!token) {
@@ -156,15 +151,23 @@ const TemplateProvider = ({ children }) => {
       if (!token) {
         return;
       }
+      console.log("*type",url);
       const { data } = await ClientAxios.post(`/templates/${url}`,newTemplate,config);
-
+      console.log("data submitTemplate",data);
+      console.log("*newTemplate",newTemplate);
       localStorage.removeItem('new-template');
+      getTemplates();
       navigate('/templates')
     } catch (error) {
       console.log("error : ", error);
     }
   };
 
+  useEffect(() => {
+
+    getTemplates();
+  }, []);
+  
 
   return (
     <TemplateContext.Provider

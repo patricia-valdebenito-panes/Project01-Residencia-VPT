@@ -9,7 +9,7 @@ export const Templates = () => {
   const { templates } = useTemplate();
   const [currentPage, setCurrentPage] = useState(0);
 
-  const itemsPerPage = window.innerWidth >= 768 ? 8 : 5;
+  const itemsPerPage = window.innerWidth >= 768 ? 20 : 10;
 
   const getType = (type) => {
     let nameType ='';
@@ -54,20 +54,20 @@ export const Templates = () => {
 
   return (
     <>
-      <div className="text-3xl font-bold mb-4">Templates</div>
+      <div className="text-3xl font-bold mb-4 overflow-x-auto">Templates</div>
       {paginatedTemplates.length ? (
         <>
           <table className="min-w-full border border-gray-300">
             <thead className="bg-gray-200 ">
               <tr className="cursor-pointer">
-                <th className="p-3 text-start">Type</th>
-                <th className="p-3 text-start">Residente</th>
-                <th className="p-3 text-start">Fecha de Creación</th>
-                <th className="p-3 text-start">Hora de Creación</th>
-                <th className="p-3 text-start">Detalle</th>
+                <th className="p-2 text-start">Type</th>
+                <th className="p-2 text-start">Residente</th>
+                <th className="p-2 text-start">Fecha</th>
+                <th className="p-2 text-start">Hora</th>
+                <th className="p-2 text-start">Detalle</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="align-middle">
               {paginatedTemplates.map((template) => {
                 const { createdAt, _id, type, updatedAt } = template;
                 date = createdAt === updatedAt ? createdAt : updatedAt;
@@ -75,13 +75,13 @@ export const Templates = () => {
                 
                 return (
                   <tr key={template._id} className="border-b border-gray-300">
-                    <td className="p-3 text-start">{ getType(type)}</td>
+                    <td className="p-2 text-start text-sm md:text-base">{ getType(type)}</td>
                     {template?.client && (
                       <ItemClientTable identify={template.client} />
                     )}
-                    <td className="p-3 text-start">{dayDate}</td>
-                    <td className="p-3 text-start">{dayHour.split(",")[0]}</td>
-                    <td className="p-3 text-start cursor-pointer hover:underline">
+                    <td className="p-2 text-start text-sm md:text-base">{dayDate}</td>
+                    <td className="p-2 text-start text-sm md:text-base">{dayHour.split(",")[0]}</td>
+                    <td className="p-2 text-start text-sm md:text-base cursor-pointer hover:underline">
                       <Link
                         className="text-gray-400 font-semibold"
                         to={`${_id}`}
@@ -118,9 +118,15 @@ export const Templates = () => {
             />
           </div>
         </>
+
       ) : (
         <p className="text text-center text-gray-600">Aún no hay registros</p>
       )}
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
     </>
   );
 };

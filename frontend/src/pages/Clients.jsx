@@ -7,6 +7,7 @@ import useClient from "../hooks/useClient.jsx";
 
 export const Clients = () => {
   const { clients } = useClient();
+  console.log(clients)
   const [currentPage, setCurrentPage] = useState(0);
 
   const itemsPerPage = window.innerWidth >= 768 ? 8 : 5;
@@ -46,7 +47,8 @@ export const Clients = () => {
                     <td className="p-3 text-start cursor-pointer hover:underline">
                     {client.name}
                     </td>
-                    <td className="p-3 text-start cursor-pointer hover:underline">
+                    <td className="p-3 text-start cursor-pointer text-gray-400 font-semibold hover:underline">
+                      ver perfil
                       {/* <Link
                         className="text-gray-400 font-semibold"
                         to={`${_id}`}

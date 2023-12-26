@@ -10,7 +10,7 @@ export const Select = ({ label, values, selectedValue, onChange}) => {
         id={`select-${label}`} 
         value={selectedValue} 
         onChange={onChange} 
-        className="w-80 border rounded-md py-3"
+        className="w-80 rounded-md py-3 border-grey-500 border-2"
         >
           <option value="">Selecciona una opción</option>
           {values?.map((option) => (

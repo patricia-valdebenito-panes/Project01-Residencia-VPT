@@ -27,7 +27,7 @@ export const Template = () => {
               <th className="p-2 text-start">Residente</th>
               <th className="p-2 text-start">Horario</th>
               <th className="p-2 text-start">Observacion</th>
-              <th className="p-2 text-start">Fecha de Creación</th>
+              <th className="p-2 text-start">Fecha</th>
               <th className="p-2 text-start">Acción</th>
             </tr>
           </thead>

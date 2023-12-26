@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Alert } from "./Alert";
 import useTemplate from "../hooks/useTemplate";
 
-
 export const FormCures = () => {
   const [observations, setOobservations] = useState("");
   const [typeCure, setTypeCure] = useState("");
@@ -15,7 +14,6 @@ export const FormCures = () => {
 
   const { template, getTemplate, submitTemplate } = useTemplate();
   const { _id, creator, client } = template;
-
 
   useEffect(() => {
     const value = localStorage.getItem("new-template").split(",")[1];
@@ -45,7 +43,7 @@ export const FormCures = () => {
       valorationAndEvolution: valorationAndEvolution,
       frecuencyCure: frecuencyCure,
       cureNext: cureNext,
-      responsibleForTheCure:responsibleForTheCure
+      responsibleForTheCure: responsibleForTheCure,
     };
     submitTemplate(newRegister, "curaciones");
   };
@@ -54,11 +52,15 @@ export const FormCures = () => {
   return (
     <>
       {/* {msg && <Alert alert={alert} />} */}
+      <p className="text-3xl text-sky-950 font-medium px-1">
+        Registro de Curaciones:
+        <span className="text-xl text-cyan-600 font-medium block">Paso 2:</span>
+      </p>
       <form
         className="bg-white py-3 px-5 md:2:1/2 rounded-lg"
         onSubmit={handleSubmit}
       >
-        <div className="flex flex-col mx-auto max-w-xs mt-5">
+        <div className="flex flex-col mx-auto max-w-xs mt-1">
           <label htmlFor="typeCure" className="text-zinc-950 mb-1 font-medium">
             Tipo de Curación:
           </label>
@@ -69,7 +71,7 @@ export const FormCures = () => {
             name="typeCure"
             value={typeCure}
             required
-            placeholder="Ingresar typeCure"
+            placeholder="Ingresar de curación"
             onChange={(e) => setTypeCure(e.target.value)}
           />
         </div>
@@ -141,30 +143,30 @@ export const FormCures = () => {
             name="frecuencyCure"
             value={frecuencyCure}
             required
-            placeholder="Ingresar Frecuencia de Cura"
+            placeholder="Ingresar Frecuencia de Curación"
             onChange={(e) => setFrecuencyCure(e.target.value)}
           />
         </div>
         <div className="flex flex-col mx-auto max-w-xs mt-5">
-        <label htmlFor="cureNext" className="text-zinc-950 mb-1 font-medium">
-          Próxima Cura:
-        </label>
-        <input
-          id="cureNext"
-          type="date" 
-          className="flex-grow min-h-10 px-2 rounded border border-grey-300"
-          name="cureNext"
-          value={cureNext}
-          required
-          onChange={(e) => setCureNext(e.target.value)}
-        />
-      </div>
+          <label htmlFor="cureNext" className="text-zinc-950 mb-1 font-medium">
+            Próxima Cura:
+          </label>
+          <input
+            id="cureNext"
+            type="date"
+            className="flex-grow min-h-10 px-2 rounded border border-grey-300"
+            name="cureNext"
+            value={cureNext}
+            required
+            onChange={(e) => setCureNext(e.target.value)}
+          />
+        </div>
         <div className="flex flex-col mx-auto max-w-xs mt-5">
           <label
             htmlFor="responsibleForTheCure"
             className="text-zinc-950 mb-1 font-medium"
           >
-            Responsable de la Cura:
+            Responsable de la Curación:
           </label>
           <input
             id="responsibleForTheCure"
@@ -173,7 +175,7 @@ export const FormCures = () => {
             name="responsibleForTheCure"
             value={responsibleForTheCure}
             required
-            placeholder="Ingresar Responsable de la Cura"
+            placeholder="Ingresar Responsable"
             onChange={(e) => setResponsibleForTheCure(e.target.value)}
           />
         </div>
@@ -191,7 +193,7 @@ export const FormCures = () => {
             name="observations"
             value={observations}
             required
-            placeholder="Ingresar Observaciones"
+            placeholder="Ingresar observaciones"
             onChange={(e) => setOobservations(e.target.value)}
           />
         </div>

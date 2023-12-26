@@ -50,12 +50,15 @@ export const FormVisitMedical = () => {
     <>
 
       {/* {msg && <Alert alert={alert} />} */}
-
+      <p className="text-3xl text-sky-950 font-medium px-1">
+             Registro de Visita Médica:
+             <span className="text-xl text-cyan-600 font-medium block">Paso 2:</span>
+                </p>
       <form
-        className="bg-white py-10 px-5 md:2:1/2 rounded-lg"
+        className="bg-white py-5 px-5 md:2:1/2 rounded-lg"
         onSubmit={handleSubmit}
       >
-        <div className="flex flex-col mx-auto max-w-xs mt-5">
+        <div className="flex flex-col mx-auto max-w-xs mt-1">
           <label htmlFor="name" className="text-zinc-950 mb-1 font-medium">
             Presión:
           </label>

@@ -60,7 +60,12 @@ export const FormNewTemplate = () => {
 
   return (
     <>
+      <p className="text-3xl text-sky-950 font-medium px-1">
+             NUEVO TEMPLATE
+             <span className="text-xl text-cyan-600 font-medium block">Paso 1:</span>
+                </p>
       {msg && <Alert alert={alert} />}
+      
       <form
         className="bg-white py-3 px-5 md:2:1/2 rounded-lg"
         onSubmit={handleSubmit}

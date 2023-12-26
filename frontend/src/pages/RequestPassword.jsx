@@ -17,7 +17,7 @@ export const RequestPassword = () => {
                             <span className="text-4xl text-primary-600 px-1">Residencia Vida Plena</span>
                             </h1>
                             <h2 className="text-2xl text-black text-center px-1 mt-2">Recuperar accesos</h2>
-                        <div className="w-full mt-4">
+                        <div className="w-full mt-2">
                             <form className="form-horizontal w-7/10 mx-auto" onSubmit={handleSubmit}>
 
                                 <div className="flex flex-col max-w-xs mx-auto mt-5">

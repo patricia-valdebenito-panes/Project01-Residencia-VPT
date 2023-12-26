@@ -16,7 +16,7 @@ export const NewPassword = () => {
                 <h2 className="text-2xl text-black text-center px-1 mt-2">
                   Cambiar contraseña
                 </h2>
-                <div className="w-full mt-4">
+                <div className="w-full mt-2">
                   <form className="form-horizontal w-7/10 mx-auto">
                     <div className="flex flex-col mx-auto max-w-xs mt-5">
                       <label htmlFor="password" className="mb-1 font-medium">
