@@ -6,8 +6,8 @@ import { Sidebar } from '../components/Sidebar';
 
 export const SecureRoute = () => {
     const { auth,loading } = useAuth();
-
-    if(loading){return  (
+    console.log("loading",auth,loading)
+    if(loading){ return  (
         <>
             <div className='w-100 flex flex-row mx-auto'>
                Cargando...
@@ -15,14 +15,17 @@ export const SecureRoute = () => {
         </>
     )}
 
+
+
+
     return (
         <>
-            { auth._id ? (
+            { auth?._id ? (
                 <div className='w-100 mx-auto'>
                     <Header/>
                     <div className='md:flex md:min-h-screen flex-row'>
                         <Sidebar/>
-                        <main className='flex-1 h-full px-2 py-3 md:px-5'>
+                        <main className='flex-1 justify-center h-full px-2 py-3 md:px-5'>
                             <Outlet/> 
                         </main>
                     </div>

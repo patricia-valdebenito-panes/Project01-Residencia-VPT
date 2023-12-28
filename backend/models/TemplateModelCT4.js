@@ -15,11 +15,10 @@ const CT_4_Schema = mongoose.Schema(
       ref: "Template",
       required: true,
     },
-    name :{
+    name: [{
       type: String,
-      required: true
-    },
-    clasificationVaccine:{
+    }],
+    clasificationVaccine: {
       type: String,
       required: true,
       // enum:["Vacuna","Complejo Vit. B12 (Neurobionta)","Otro"]

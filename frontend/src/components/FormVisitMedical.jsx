@@ -52,7 +52,7 @@ export const FormVisitMedical = () => {
       {/* {msg && <Alert alert={alert} />} */}
       <p className="text-3xl text-sky-950 font-medium px-1">
              Registro de Visita Médica:
-             <span className="text-xl text-cyan-600 font-medium block">Paso 2:</span>
+             <span className="text-xl text-cyan-800 mt-2 font-medium block">Paso 2:</span>
                 </p>
       <form
         className="bg-white py-5 px-5 md:2:1/2 rounded-lg"
@@ -65,11 +65,11 @@ export const FormVisitMedical = () => {
           <input
             id="presion"
             type="text"
-            className="flex-grow min-h-10 px-2 rounded border border-grey-300"
+            className="flex-grow min-h-10 px-2 rounded border border-gray-500"
             name="presion"
             value={presion}
             required
-            placeholder="Ingresar Nombre"
+            placeholder="Ingresar medida"
             onChange={(e) => setPresion(e.target.value)}
           />
         </div>
@@ -83,11 +83,11 @@ export const FormVisitMedical = () => {
           <input
             id="type"
             type="text"
-            className="flex-grow min-h-10 px-2 rounded border border-grey-300"
+            className="flex-grow min-h-10 px-2 rounded border border-gray-500"
             name="pulse"
             value={pulse}
             required
-            placeholder="Ingresar tipo"
+            placeholder="Ingresar medida"
             onChange={(e) => setPulse(e.target.value)}
           />
         </div>
@@ -102,11 +102,11 @@ export const FormVisitMedical = () => {
           <input
             id="type"
             type="text"
-            className="flex-grow min-h-10 px-2 rounded border border-grey-300"
+            className="flex-grow min-h-10 px-2 rounded border border-gray-500"
             name="temperature"
             value={temperature}
             required
-            placeholder="Ingresar tipo"
+            placeholder="Ingresar medida"
             onChange={(e) => setTemperature(e.target.value)}
           />
         </div>
@@ -120,11 +120,11 @@ export const FormVisitMedical = () => {
           <input
             id="type"
             type="text"
-            className="flex-grow min-h-10 px-2 rounded border border-grey-300"
+            className="flex-grow min-h-10 px-2 rounded border border-gray-500"
             name="FR"
             value={FR}
             required
-            placeholder="Ingresar tipo"
+            placeholder="Ingresar medida"
             onChange={(e) => setFR(e.target.value)}
           />
         </div>
@@ -138,11 +138,11 @@ export const FormVisitMedical = () => {
           <input
             id="type"
             type="text"
-            className="flex-grow min-h-10 px-2 rounded border border-grey-300"
+            className="flex-grow min-h-10 px-2 rounded border border-gray-500"
             name="SAC"
             value={SAC}
             required
-            placeholder="Ingresar tipo"
+            placeholder="Ingresar medida"
             onChange={(e) => setSAC(e.target.value)}
           />
         </div>
@@ -156,7 +156,7 @@ export const FormVisitMedical = () => {
           <input
             id="observations"
             type="text"
-            className="flex-grow min-h-80 px-2 rounded border border-grey-300"
+            className="flex-grow min-h-80 px-2 rounded border border-gray-500"
             name="observations"
             value={observations}
             required
@@ -167,7 +167,7 @@ export const FormVisitMedical = () => {
         <div className="flex flex-col max-w-xs mt-8 mx-auto mb-5">
           <button
             type="submit"
-            className="w-full bg-sky-700 border cursor-pointer rounded-lg hover:bg-sky-800 text-sky-50 text-sm font-semibold py-3 px-4 transition-colors"
+            className="w-full bg-sky-700 border cursor-pointer  font-semibold hover:bg-sky-800 rounded-lg  py-4 text-sky-50 text-lg  px-4 tracking-wide transition-colors uppercase"
           >
             Guardar
           </button>

@@ -55,6 +55,21 @@ const ClientProvider = ({ children }) => {
     }
   };
 
+  const editResident = async (newTemplate) => {
+    const token = localStorage.getItem("token");
+    try {
+      if (!token) {
+        return;
+      }
+      const { data } = await ClientAxios.put(`/client/new-client`,newTemplate,config);
+      setClients([...clients,data]);
+      // getClients();
+      // navigate('/residentes')
+    } catch (error) {
+      console.log("error : ", error);
+    }
+  };
+
   const submitResident = async (newTemplate) => {
     const token = localStorage.getItem("token");
     try {
@@ -83,6 +98,7 @@ const ClientProvider = ({ children }) => {
         alert,
         client,
         clients,
+        editResident,
         getClient,
         showAlert,
         submitResident

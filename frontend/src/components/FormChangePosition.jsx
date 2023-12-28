@@ -52,7 +52,7 @@ export const FormChangePosition = () => {
       {/* {msg && <Alert alert={alert} />} */}
       <p className="text-3xl text-sky-950 font-medium px-1">
         Registro de Cambio de posición:
-        <span className="text-xl text-cyan-600 font-medium block">Paso 2:</span>
+        <span className="text-xl text-cyan-800 mt-2 font-medium block">Paso 2:</span>
       </p>
       <form
         className="bg-white py-5 px-5 md:2:1/2 rounded-lg"
@@ -77,7 +77,7 @@ export const FormChangePosition = () => {
           <input
             id="observations"
             type="text"
-            className="flex-grow min-h-24 px-2 rounded border border-grey-300"
+            className="flex-grow min-h-24 px-2 rounded border border-gray-500"
             name="observations"
             value={observations}
             required
@@ -85,10 +85,11 @@ export const FormChangePosition = () => {
             onChange={(e) => setOobservations(e.target.value)}
           />
         </div>
+
         <div className="flex flex-col max-w-xs mt-8 mx-auto mb-5">
           <button
             type="submit"
-            className="w-full bg-sky-700 border cursor-pointer rounded-lg hover:bg-sky-800 text-sky-50 text-sm font-semibold py-3 px-4 transition-colors"
+            className="w-full bg-sky-700 border cursor-pointer  font-semibold hover:bg-sky-800 rounded-lg  py-4 text-sky-50 text-lg  px-4 tracking-wide transition-colors uppercase"
           >
             Guardar
           </button>

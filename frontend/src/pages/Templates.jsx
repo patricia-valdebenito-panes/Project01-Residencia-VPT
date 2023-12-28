@@ -4,9 +4,13 @@ import formatDateAndTime from "../config/FormatDateAndHr.js";
 import { ItemClientTable } from "../components/ItemClientTable.jsx";
 import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
+import useAuth from "../hooks/useAuth.jsx";
 
 export const Templates = () => {
+  const { auth } = useAuth();
+  console.log("auth ::",auth);
   const { templates } = useTemplate();
+
   const [currentPage, setCurrentPage] = useState(0);
 
   const itemsPerPage = window.innerWidth >= 768 ? 20 : 10;
@@ -60,18 +64,19 @@ export const Templates = () => {
           <table className="min-w-full border border-gray-300">
             <thead className="bg-gray-200 ">
               <tr className="cursor-pointer">
-                <th className="p-2 text-start">Type</th>
+                <th className="p-2 text-start">Tipo</th>
                 <th className="p-2 text-start">Residente</th>
                 <th className="p-2 text-start">Fecha</th>
                 <th className="p-2 text-start">Hora</th>
-                <th className="p-2 text-start">Detalle</th>
+                <th className="p-2 text-center">Detalle</th>
               </tr>
             </thead>
             <tbody className="align-middle">
               {paginatedTemplates.map((template) => {
                 const { createdAt, _id, type, updatedAt } = template;
                 date = createdAt === updatedAt ? createdAt : updatedAt;
-                const { dayDate, dayHour } = formatDateAndTime(date);
+                // const { dayDate, dayHour } = formatDateAndTime(date);
+                const { dayDate_format_dd_mm, dayHour } = formatDateAndTime(date);
                 
                 return (
                   <tr key={template._id} className="border-b border-gray-300">
@@ -79,14 +84,14 @@ export const Templates = () => {
                     {template?.client && (
                       <ItemClientTable identify={template.client} />
                     )}
-                    <td className="p-2 text-start text-sm md:text-base">{dayDate}</td>
+                    <td className="p-2 text-start text-sm md:text-base">{dayDate_format_dd_mm}</td>
                     <td className="p-2 text-start text-sm md:text-base">{dayHour.split(",")[0]}</td>
-                    <td className="p-2 text-start text-sm md:text-base cursor-pointer hover:underline">
+                    <td className="p-2 text-center text-sm md:text-base cursor-pointer hover:underline">
                       <Link
                         className="text-gray-400 font-semibold"
                         to={`${_id}`}
                       >
-                        Ver Detalle
+                        Ver
                       </Link>
                     </td>
                   </tr>

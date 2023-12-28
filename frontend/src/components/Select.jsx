@@ -1,6 +1,6 @@
 export const Select = ({ label, values, selectedValue, onChange}) => {
   return (
-      <div>
+      <div className="w-full">
         <label 
         htmlFor={`select-${label}`}
         className="block mb-2 text-base font-medium text-zinc-950 uppercase"
@@ -10,7 +10,7 @@ export const Select = ({ label, values, selectedValue, onChange}) => {
         id={`select-${label}`} 
         value={selectedValue} 
         onChange={onChange} 
-        className="w-80 rounded-md py-3 border-grey-500 border-2"
+        className="w-80 rounded-md py-3 border-gray-400 border-2"
         >
           <option value="">Selecciona una opción</option>
           {values?.map((option) => (

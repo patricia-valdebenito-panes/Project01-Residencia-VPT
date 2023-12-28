@@ -6,10 +6,11 @@ import ClientAxios from "../config/ClientAxios";
 import useAuth from "../hooks/useAuth";
 
 export const Login = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [alert, setAlert] = useState({});
-
   const { setAuth } = useAuth();
   
   const handleReset = () => {
@@ -49,6 +50,8 @@ export const Login = () => {
       setAuth(data);
       localStorage.setItem('token',data.token);
       handleReset();
+      navigate('/templates');
+
     } catch (error) {
       const { data, status } = error.response;
       setAlert({ msg: data.msg, error: true });

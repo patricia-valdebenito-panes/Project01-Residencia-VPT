@@ -6,7 +6,7 @@ const checkAuth = async (req, res, next) => {
   // token correct
 
   let token;
-  console.log("req.headers.authorization",req.headers.authorization)
+  console.log("req.headers.authorization :: ",req.headers.authorization)
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
@@ -15,7 +15,8 @@ const checkAuth = async (req, res, next) => {
         //get token
         token = req.headers.authorization.split(' ')[1]; //codificated
         const decoded = jwt.verify(token,process.env.JWT_SECRET);
-
+        const existUser =  await UserModel.findById(decoded.id).select("-password -confirmated -token -createdAt -updatedAt -__v");
+        console.log("existUser : ",existUser);
         req.user = await UserModel.findById(decoded.id).select("-password -confirmated -token -createdAt -updatedAt -__v");
         return next();
 

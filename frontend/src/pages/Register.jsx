@@ -67,6 +67,7 @@ export const Register = () => {
               <div className="flex flex-col flex-1 justify-center mb-8 mt-2">
                      <p className="text-3xl text-sky-950 font-medium mx-auto px-1">
                         REGISTRAR USUARIO
+                        <span className="block text-lg text-center text-sky-500 font-medium mx-auto px-1">Administradores y Cuidadores</span>
                       </p>
                 <div className="w-full mt-2">
                   <form 

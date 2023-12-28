@@ -25,6 +25,7 @@ import { RegisterVisitMedical } from "./pages/RegisterVisitMedical";
 import { RegisterVitalSigns } from "./pages/RegisterVitalSigns";
 
 import { Clients } from "./pages/Clients";
+import { Resident } from "./pages/Resident";
 
 
 
@@ -65,6 +66,7 @@ export default function App() {
               <Route path="residentes" element={<SecureRoute />}>
                 <Route index element={<Clients />} />
                 <Route path="nuevo-residente" element={<NewResident />} />
+                <Route path=":id" element={<Resident />} />
               </Route>
             </Routes>
             </TemplateProvider>

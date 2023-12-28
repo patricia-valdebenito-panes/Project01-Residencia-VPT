@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { Alert } from "../components/Alert";
+import ClientAxios from '../config/ClientAxios';
 
 export const ConfirmeAccount = () => {
     const params = useParams();
@@ -12,7 +13,7 @@ export const ConfirmeAccount = () => {
     useEffect(() => {
         
       const confirmatedAccount = async () => {
-        const response = await axios.get(`http://localhost:4000/api/users/confirm/${id}`);
+        const response = await ClientAxios(`/users/confirm/${id}`);
 
         try{
             setAlert({
@@ -24,6 +25,7 @@ export const ConfirmeAccount = () => {
             console.log("Error",error);
         }
       }
+      
       confirmatedAccount();
     }, [])
     

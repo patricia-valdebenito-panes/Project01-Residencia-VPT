@@ -15,7 +15,7 @@ const AuthProvider = ({ children }) => {
 
     const authentificationUser = async () => {
       const token = localStorage.getItem("token");
-      console.log("token")
+
       if (!token) {
         setLoading(false);
         return;
@@ -28,24 +28,29 @@ const AuthProvider = ({ children }) => {
       };
 
       try {
+        console.log("token token: ",token);
+
         const { data } = await ClientAxios("/users/perfil", config);
+        console.log("data : ",data);
         setAuth(data);
-        if(pathname === '/residentes'){
-                  console.log("? ruta :",pathname)
+
+        if (pathname === '/residentes') {
           navigate('/residentes');
-        }else{       
-           navigate('/templates');
-                   // if(pathname === '/registro'){return }
-        console.log("? ruta :",pathname)
-          
-          }
+        } else if(pathname === '/registro') {
+          navigate('/registro');
+        } else {
+          navigate('/templates');
+        }
 
 
       } catch (error) {
+        console.log("error : ",);
         setAuth({});
         console.log("error : ", error);
+        setLoading(false);
       }
-      finally{
+      finally {
+        console.log("finally : ",);
         setLoading(false);
       }
     };

@@ -145,8 +145,11 @@ const changePassword = async (req,res)=> {
 
 // perfil
 const perfil = async (req,res) => {
-    console.log("desde perfil");
+
     const { user } = req;
+    console.log("desde perfil user:",user);
+    // if(!user){      console.log("user - perfil ::", user) }
+
     res.json(user);
     // {
     //     "_id"

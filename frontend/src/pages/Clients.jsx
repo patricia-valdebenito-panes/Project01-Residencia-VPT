@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import formatDateAndTime from "../config/FormatDateAndHr.js";
 import { ItemClientTable } from "../components/ItemClientTable.jsx";
-// import { Link } from "react-router-dom";
+ import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import useClient from "../hooks/useClient.jsx";
 
@@ -46,15 +46,15 @@ export const Clients = () => {
                   <tr key={client._id} className="border-b border-gray-300">
                     <td className="p-3 text-start cursor-pointer hover:underline">
                     {client.name}
+                  
                     </td>
                     <td className="p-3 text-start cursor-pointer text-gray-400 font-semibold hover:underline">
-                      ver perfil
-                      {/* <Link
+                      <Link
                         className="text-gray-400 font-semibold"
-                        to={`${_id}`}
+                        to={`${ client._id}`}
                       >
-                        Ver Detalle
-                      </Link> */}
+                        ver perfil
+                      </Link>
                     </td>
                   </tr>
                 );
