@@ -26,7 +26,7 @@ import { RegisterVitalSigns } from "./pages/RegisterVitalSigns";
 
 import { Clients } from "./pages/Clients";
 import { Resident } from "./pages/Resident";
-
+import { ResidentEdit } from "./pages/ResidentEdit";
 
 
 // import { Algo } from "./pages/Algo";
@@ -67,6 +67,8 @@ export default function App() {
                 <Route index element={<Clients />} />
                 <Route path="nuevo-residente" element={<NewResident />} />
                 <Route path=":id" element={<Resident />} />
+                <Route path="editar-residente/:id" element={<ResidentEdit />} />
+                
               </Route>
             </Routes>
             </TemplateProvider>

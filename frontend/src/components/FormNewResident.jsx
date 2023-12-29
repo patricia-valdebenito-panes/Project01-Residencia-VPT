@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useClient from "../hooks/useClient";
 import { Alert } from "./Alert";
+import { useParams } from "react-router-dom";
 
 const optionRol = [
   { value: "RESIDENT", label: "RESIDENTE" },
@@ -8,6 +9,8 @@ const optionRol = [
 ];
 
 export const FormNewResident = () => {
+  const params = useParams();
+  const [existID, setExitId] = useState(null);
   const [name, setName] = useState("");
   const [lastnamemother, setLastnamemother] = useState("");
   const [lastnamefather, setLastnamefather] = useState("");
@@ -24,7 +27,8 @@ export const FormNewResident = () => {
   const [tutoraddress, setTutorAddress] = useState("");
   const [tutorrut, setTutorRut] = useState("");
 
-  const { alert, showAlert, submitResident } = useClient();
+  const { alert, client, editResident, showAlert, submitResident } = useClient();
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -40,6 +44,15 @@ export const FormNewResident = () => {
       return;
     }
 
+    let tutor = {
+      name: tutorname,
+      lastnamefather: tutorlastnamemother,
+      lastnamemother: tutorlastnamefather,
+      phone: tutorphone,
+      address: tutoraddress,
+      rut: tutorrut,
+    };
+
     let newResident = {
       name: name,
       lastnamemother: lastnamemother,
@@ -49,20 +62,52 @@ export const FormNewResident = () => {
       country: country,
       dependencyNivel: dependencyNivel,
       rol: rol,
-      tutor: {
-        name: tutorname,
-        lastnamefather: tutorlastnamemother,
-        lastnamemother: tutorlastnamefather,
-        phone: tutorphone,
-        address: tutoraddress,
-        rut: tutorrut,
-      },
-    };
-    console.log("new resident : ", newResident);
-    // datos a provider templates
-    submitResident(newResident);
+      tutor: tutor
+    }
+
+    if (existID) {
+      newResident._id= existID
+      console.log("new resident : ", newResident);
+      editResident(newResident);
+
+    } else {
+      console.log("new resident : ", newResident);
+      submitResident(newResident);
+    }
+
     showAlert({});
   };
+
+
+
+
+
+  useEffect(() => {
+    const id = params.id;
+    if (!id) {
+      console.log("vacio");
+    }
+    else {
+      setExitId(id)
+      console.log("creado previo");
+      console.log(client)
+      setName(client?.name)
+      setLastnamemother(client?.lastnamefather)
+      setLastnamefather(client?.lastnamefather)
+      setRut(client?.rut)
+      setAddress(client.address)
+      setCountry(client.country)
+      setDependencyNivel(client.dependencyNivel)
+
+      setTutorName(client.tutor?.name)
+      setTutorLastnamefather(client.tutor?.lastnamefather)
+      setTutorLastnamemother(client.tutor?.lastnamemother)
+      setTutorPhone(client.tutor?.phone)
+      setTutorAddress(client.tutor?.address)
+      setTutorRut(client.tutor?.rut)
+
+    }
+  }, [params])
 
   const { msg } = alert;
 
@@ -338,7 +383,7 @@ export const FormNewResident = () => {
             type="submit"
             className="w-full bg-sky-700 border cursor-pointer  font-semibold hover:bg-sky-800 rounded-lg  py-4 text-sky-50 text-lg  px-4 tracking-wide transition-colors uppercase"
           >
-            Guardar
+            {existID ? 'Actualizar' : ' Guardar'}
           </button>
         </div>
       </form>

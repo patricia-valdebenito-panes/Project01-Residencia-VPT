@@ -61,7 +61,7 @@ const ClientProvider = ({ children }) => {
       if (!token) {
         return;
       }
-      const { data } = await ClientAxios.put(`/client/new-client`,newTemplate,config);
+      const { data } = await ClientAxios.put(`/client/editar/${newTemplate._id}`,newTemplate,config);
       setClients([...clients,data]);
       // getClients();
       // navigate('/residentes')
@@ -84,6 +84,8 @@ const ClientProvider = ({ children }) => {
       console.log("error : ", error);
     }
   };
+
+
   
   useEffect(() => {
     setTimeout(()=>{

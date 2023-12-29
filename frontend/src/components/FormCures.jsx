@@ -67,7 +67,7 @@ export const FormCures = () => {
           <input
             id="typeCure"
             type="text"
-            className="flex-grow min-h-10 px-2 rounded border border-grey-300"
+            className="flex-grow min-h-10 px-2 rounded border border-gray-500"
             name="typeCure"
             value={typeCure}
             required
@@ -82,7 +82,7 @@ export const FormCures = () => {
           <input
             id="zone"
             type="text"
-            className="flex-grow min-h-20 px-2 rounded border border-grey-300"
+            className="flex-grow min-h-20 px-2 rounded border border-gray-500"
             name="zone"
             value={zone}
             required
@@ -100,7 +100,7 @@ export const FormCures = () => {
           <input
             id="ulcerOrigin"
             type="text"
-            className="flex-grow min-h-20 px-2 rounded border border-grey-300"
+            className="flex-grow min-h-20 px-2 rounded border border-gray-500"
             name="ulcerOrigin"
             value={ulcerOrigin}
             required
@@ -121,7 +121,7 @@ export const FormCures = () => {
             min="1"
             max="100"
             step="1"
-            className="flex-grow min-h-10 px-2 rounded border border-grey-300"
+            className="flex-grow min-h-10 px-2 rounded border border-gray-500"
             name="valorationAndEvolution"
             value={valorationAndEvolution}
             required
@@ -139,7 +139,7 @@ export const FormCures = () => {
           <input
             id="frecuencyCure"
             type="text"
-            className="flex-grow min-h-10 px-2 rounded border border-grey-300"
+            className="flex-grow min-h-10 px-2 rounded border border-gray-500"
             name="frecuencyCure"
             value={frecuencyCure}
             required
@@ -154,7 +154,7 @@ export const FormCures = () => {
           <input
             id="cureNext"
             type="date"
-            className="flex-grow min-h-10 px-2 rounded border border-grey-300"
+            className="flex-grow min-h-10 px-2 rounded border border-gray-500"
             name="cureNext"
             value={cureNext}
             required
@@ -171,7 +171,7 @@ export const FormCures = () => {
           <input
             id="responsibleForTheCure"
             type="text"
-            className="flex-grow min-h-20 px-2 rounded border border-grey-300"
+            className="flex-grow min-h-20 px-2 rounded border border-gray-500"
             name="responsibleForTheCure"
             value={responsibleForTheCure}
             required
@@ -189,7 +189,7 @@ export const FormCures = () => {
           <input
             id="observations"
             type="text"
-            className="flex-grow min-h-48 px-2 rounded border border-grey-300"
+            className="flex-grow min-h-48 px-2 rounded border border-gray-500"
             name="observations"
             value={observations}
             required
