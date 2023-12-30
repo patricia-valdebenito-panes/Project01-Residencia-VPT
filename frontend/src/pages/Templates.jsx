@@ -6,13 +6,18 @@ import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import useAuth from "../hooks/useAuth.jsx";
 
+import { ReactTabulator } from 'react-tabulator';
+import 'react-tabulator/lib/styles.css'; // import the styles
+import 'react-tabulator/lib/css/tabulator.min.css'; // import the styles
+
+
+
 export const Templates = () => {
   const { auth } = useAuth();
   console.log("auth ::",auth);
   const { templates } = useTemplate();
 
   const [currentPage, setCurrentPage] = useState(0);
-
   const itemsPerPage = window.innerWidth >= 768 ? 20 : 10;
 
   const getType = (type) => {
@@ -40,6 +45,33 @@ export const Templates = () => {
     
   };
 
+  const formatDateToTabulator = () => {
+    let data = [];
+    for (let i = 0; i < templates.length; i++) {  
+      let dcreatedAt = templates[i].createdAt;
+      let dupdatedAt = templates[i].updatedAt;
+      let ddate = dcreatedAt === dupdatedAt? dcreatedAt : dupdatedAt;
+
+      data.push({id:i+1, type:getType(templates[i].type), client:templates[i].client, date:formatDateAndTime(ddate).dayDate_format_yyyy_mm_dd, hr:formatDateAndTime(ddate).dayHour});
+      console.log(data);
+    }
+    return data; 
+   }
+
+  const columns = [
+    { title: "Tipo", field: "type", width: 150 },
+    { title: "Residente", field: "client", width: 150 },
+    { title: "Fecha", field: "date",width: 150 },
+    { title: "Hora", field: "hr", width: 150 }
+
+    // { title: "Name", field: "name", width: 150 },
+    // { title: "Age", field: "age", hozAlign: "left", formatter: "progress" },
+    // { title: "Favourite Color", field: "col" },
+    // { title: "Date Of Birth", field: "dob", hozAlign: "center" },
+    // { title: "Rating", field: "rating", hozAlign: "center", formatter: "star" },
+    // { title: "Passed?", field: "passed", hozAlign: "center", formatter: "tickCross" }
+  ];
+  
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
   };
@@ -55,10 +87,18 @@ export const Templates = () => {
   );
 
   let date;
+  
 
   return (
     <>
       <div className="text-3xl font-bold mb-4 overflow-x-auto">Templates</div>
+      <div>
+      <ReactTabulator
+        data={formatDateToTabulator()}
+        columns={columns}
+        layout={"fitData"}
+        />
+      </div>
       {paginatedTemplates.length ? (
         <>
           <table className="min-w-full border border-gray-300">
