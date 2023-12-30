@@ -29,7 +29,6 @@ export const FormNewResident = () => {
 
   const { alert, client, editResident, showAlert, submitResident } = useClient();
 
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -158,7 +157,7 @@ export const FormNewResident = () => {
             </div>
             <div className="flex flex-col w-full max-w-auto md:max-w-full mt-5">
               <label
-                htmlFor="nalastnamefatherme"
+                htmlFor="lastnamefather"
                 className="text-zinc-950 mb-1 font-medium"
               >
                 Apellido paterno:
@@ -284,7 +283,7 @@ export const FormNewResident = () => {
           <div className="flex gap-2">
             <div className="flex flex-col w-full max-w-44 md:max-w-full mt-5">
               <label
-                htmlFor="lastnamemother"
+                htmlFor="tutorlastnamemother"
                 className="text-zinc-950 mb-1 font-medium"
               >
                 Apellido materno:
