@@ -80,7 +80,6 @@ export const FormChangePosition = () => {
             className="flex-grow min-h-24 px-2 rounded border border-gray-500"
             name="observations"
             value={observations}
-            required
             placeholder="Ingresar observaciones"
             onChange={(e) => setOobservations(e.target.value)}
           />

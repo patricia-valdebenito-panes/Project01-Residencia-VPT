@@ -35,7 +35,9 @@ export const FormNewTemplate = () => {
       value: client._id,
       label: client.name,
     }));
-  
+
+   
+    const searchClient = (value) => clients?.filter((client) => client._id === value);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -52,7 +54,7 @@ export const FormNewTemplate = () => {
     }
 
     // datos a provider templates
-    submitNewTemplate({ creador: auth._id, client, type });
+    submitNewTemplate({ creador: auth._id,name:searchClient(client)[0].name,client, type });
     showAlert({});
 
   };
