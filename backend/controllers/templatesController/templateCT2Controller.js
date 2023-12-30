@@ -25,7 +25,7 @@ const createTemplate_CT2 = async (req, res) => {
 
 const getTemplate_CT2 = async (req, res) => {
   const { id } = req.params;
-  const template = await TemplateCT2.findOne({ template: id })
+  const template = await TemplateCT2.findOne({ template: req.params.id });
   console.log("template +",template)
   if (!template) {
     const err = new Error("No encontrado.");

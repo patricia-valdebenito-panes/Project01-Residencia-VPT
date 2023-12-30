@@ -1,4 +1,5 @@
 import TemplateCT6 from "../../models/TemplateModelCT6.js";
+import TemplateModel from "../../models/templatesModel.js";
 
 const getTemplates_CT6 = async (req, res) => {
   const templates = await TemplateCT6.find();
@@ -27,8 +28,7 @@ const createTemplate_CT6 = async (req, res) => {
 const getSubSectionTemplate_CT6 = async (req, res) => {};
 
 const getTemplate_CT6 = async (req, res) => {
-  const { id } = req.params;
-  const template = await TemplateCT6.findById(id).populate("template");;
+  const template =  await TemplateCT6.findOne({ template: req.params.id });
 
   if (!template) {
     const err = new Error("No encontrado.");

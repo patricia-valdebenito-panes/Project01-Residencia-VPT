@@ -91,7 +91,7 @@ export const Templates = () => {
                         className="text-gray-400 font-semibold"
                         to={`${_id}`}
                       >
-                        Ver
+                        {template._id}
                       </Link>
                     </td>
                   </tr>

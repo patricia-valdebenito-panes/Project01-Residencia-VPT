@@ -33,6 +33,4 @@ const TemplateModel = mongoose.model("Template", TemplateSchema);
 
 export default TemplateModel;
 
-mongoose
-
 

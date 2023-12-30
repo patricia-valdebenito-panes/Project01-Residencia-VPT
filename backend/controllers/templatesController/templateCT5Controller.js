@@ -28,9 +28,7 @@ const createTemplate_CT5 = async (req, res) => {
 const getSubSectionTemplate_CT5 = async (req, res) => {};
 
 const getTemplate_CT5 = async (req, res) => {
-  const { id } = req.params;
-  const template = await TemplateCT5.findById(id).populate("template");;
-
+  const template = await TemplateCT5.findOne({ template: req.params.id });
   console.log("TemplateModel : ", template);
 
   if(!template){

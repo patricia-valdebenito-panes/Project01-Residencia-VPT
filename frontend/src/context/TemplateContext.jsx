@@ -35,13 +35,29 @@ const TemplateProvider = ({ children }) => {
 
       const { data } = await ClientAxios("/templates", config);
       setTemplates(data);
-
     } catch (error) {
       console.log("error : ", error);
     }
     // console.log("newTemplate : ",newTemplate);
   };
-  const getTemplate = async(_id) => {
+
+  const getTemplate = async (_id) => {
+    try {
+      if (!token) {
+        console.log("sin token : ");
+        return;
+      }
+
+      const { data } = await ClientAxios(`/templates/${_id}`, config);
+      console.log("data getTemplateCT:", data);
+      setTemplate(data);
+    } catch (error) {
+      console.log("error : ", error);
+    }
+  };
+
+  const getTemplateTC = async (_id, type) => {
+    let url = "";
     try {
       if (!token) {
         console.log("sin token : ");
@@ -51,54 +67,36 @@ const TemplateProvider = ({ children }) => {
         console.log("sin _id : ");
         return;
       }
-      
-      const { data } = await ClientAxios(`/templates/${_id}`,config);
-      console.log("data getTemplate:", data);
-      setTemplate(data);
 
-    } catch (error) {
-      console.log("error : ", error);
-    }
-  }
-  const getTemplateCT = async(_id,type) => {
-    let url='';
-    try {
-      if (!token) {
-        console.log("sin token : ");
-        return;
-      }
-      console.log(type)
       switch (type) {
         case "CT2":
           url = "cambio-de-posicion";
           break;
         case "CT3":
-
           url = "curaciones";
           break;
         case "CT4":
-
           url = "vacunas";
           break;
         case "CT5":
-
           url = "visitas-medicas";
           break;
         case "CT6":
-  
           url = "signos-vitales";
           break;
         default:
           console.log(`Sorry, we are out of ${expr}.`);
       }
-      console.log("/templates/${url}/${_id} ::", `/templates/${url}/${_id}`);
-      const { data } = await ClientAxios(`/templates/${url}/${_id}`,config);
-      setTemplateTC(data);
+      //console.log("type :", type, "url :", url);
 
+      const { data } = await ClientAxios(`/templates/${url}/${_id}`, config);
+      console.log("data getTemplateTC:", data);
+      setTemplateTC(data);
     } catch (error) {
       console.log("error : ", error);
     }
-  }
+  };
+
   const submitNewTemplate = async (newTemplate) => {
     const { type } = newTemplate;
     const token = localStorage.getItem("token");
@@ -109,29 +107,33 @@ const TemplateProvider = ({ children }) => {
         return;
       }
 
-      const { data } = await ClientAxios.post("/templates",newTemplate,config);
-      console.log("*type",type);
-      console.log("*data",data);
-      console.log("*newTemplate",newTemplate);
+      const { data } = await ClientAxios.post(
+        "/templates",
+        newTemplate,
+        config
+      );
+      console.log("*type", type);
+      console.log("*data", data);
+      console.log("*newTemplate", newTemplate);
       switch (type) {
         case "CT2":
-          localStorage.setItem('new-template',`${type},${data._id}`);
+          localStorage.setItem("new-template", `${type},${data._id}`);
           navigate("/templates/cambio-de-posicion");
           break;
         case "CT3":
-          localStorage.setItem('new-template',`${type},${data._id}`);
+          localStorage.setItem("new-template", `${type},${data._id}`);
           navigate("/templates/curaciones");
           break;
         case "CT4":
-          localStorage.setItem('new-template',`${type},${data._id}`);
+          localStorage.setItem("new-template", `${type},${data._id}`);
           navigate("/templates/vacunas");
           break;
         case "CT5":
-          localStorage.setItem('new-template',`${type},${data._id}`);
+          localStorage.setItem("new-template", `${type},${data._id}`);
           navigate("/templates/visitas-medicas");
           break;
         case "CT6":
-          localStorage.setItem('new-template',`${type},${data._id}`);
+          localStorage.setItem("new-template", `${type},${data._id}`);
           navigate("/templates/signos-vitales");
           break;
         default:
@@ -139,48 +141,50 @@ const TemplateProvider = ({ children }) => {
       }
       // actualizar listado de proyectos
       // actualizar state te templates
-      setTemplates([...templates,data]);
+      setTemplates([...templates, data]);
     } catch (error) {
       console.log("error : ", error);
     }
   };
 
-  const submitTemplate = async (newTemplate,url) => {
+  const submitTemplate = async (newTemplate, url) => {
     const token = localStorage.getItem("token");
     try {
       if (!token) {
         return;
       }
-      console.log("*type",url);
-      const { data } = await ClientAxios.post(`/templates/${url}`,newTemplate,config);
-      console.log("data submitTemplate",data);
-      console.log("*newTemplate",newTemplate);
-      localStorage.removeItem('new-template');
+      console.log("*type", url);
+      const { data } = await ClientAxios.post(
+        `/templates/${url}`,
+        newTemplate,
+        config
+      );
+      console.log("data submitTemplate", data);
+      console.log("*newTemplate", newTemplate);
+      localStorage.removeItem("new-template");
       getTemplates();
-      navigate('/templates')
+      navigate("/templates");
     } catch (error) {
       console.log("error : ", error);
     }
   };
 
   useEffect(() => {
-
     getTemplates();
   }, []);
-  
 
   return (
     <TemplateContext.Provider
       value={{
         alert,
         getTemplate,
-        getTemplateCT,
+        getTemplateTC,
         showAlert,
         submitNewTemplate,
         submitTemplate,
         template,
         templateTC,
-        templates
+        templates,
       }}
     >
       {children}

@@ -38,7 +38,7 @@ const corsOpts =  {
     }
 }
 
- app.use(cors(corsOpts)); // no corre desde postmant // host diferente
+app.use(cors(corsOpts)); // no corre desde postmant // host diferente
 
 // routing
 app.use("/api/users",usersRoutes);

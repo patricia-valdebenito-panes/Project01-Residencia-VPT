@@ -18,7 +18,7 @@ export const FormNewResident = () => {
   const [address, setAddress] = useState("");
   const [country, setCountry] = useState("");
   const [dependencyNivel, setDependencyNivel] = useState("");
-  const [rol, setRol] = useState(optionRol[0]?.label || 'RESIDENT');
+  // const [rol, setRol] = useState(optionRol[0]?.label || 'RESIDENT');
 
   const [tutorname, setTutorName] = useState("");
   const [tutorlastnamemother, setTutorLastnamemother] = useState("");
@@ -44,14 +44,6 @@ export const FormNewResident = () => {
       return;
     }
 
-    let tutor = {
-      name: tutorname,
-      lastnamefather: tutorlastnamemother,
-      lastnamemother: tutorlastnamefather,
-      phone: tutorphone,
-      address: tutoraddress,
-      rut: tutorrut,
-    };
 
     let newResident = {
       name: name,
@@ -61,13 +53,20 @@ export const FormNewResident = () => {
       address: address,
       country: country,
       dependencyNivel: dependencyNivel,
-      rol: rol,
-      tutor: tutor
+      rol: "RESIDENT",
+      tutor: {
+        name: tutorname,
+        lastnamefather: tutorlastnamemother,
+        lastnamemother: tutorlastnamefather,
+        phone: tutorphone,
+        address: tutoraddress,
+        rut: tutorrut,
+      }
     }
 
     if (existID) {
       newResident._id= existID
-      console.log("new resident : ", newResident);
+      console.log("edit resident : ", newResident);
       editResident(newResident);
 
     } else {
@@ -252,11 +251,10 @@ export const FormNewResident = () => {
               type="text"
               className="flex-grow min-h-10 px-2 rounded border-gray-500 border-2"
               name="rol"
-              value={rol}
+              value={"RESIDENT"}
               required
               defaultValue={"RESIDENT"}
               placeholder="Ingresar Nombre"
-              onChange={(e) => setRol(e.target.value)}
             />
           </div>
 
