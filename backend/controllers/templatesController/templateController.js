@@ -46,7 +46,7 @@ const createTemplate = async (req, res) => {
 
   template.type = req.body.type;
   template.client = req.body.client;
-
+  template.name = req.body.name;
   //contributors[]
   console.log("req.body.contributors : ", req.body.contributors);
   console.log("req.user._id : ", req.user._id);

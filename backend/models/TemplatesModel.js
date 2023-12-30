@@ -7,7 +7,11 @@ const TemplateSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref:"ClientUser",
       required: true
-  },
+    },
+    name: {
+      type: String,
+      required: true
+    },
     creator: {
         type: mongoose.Schema.Types.ObjectId,
         ref:"User",

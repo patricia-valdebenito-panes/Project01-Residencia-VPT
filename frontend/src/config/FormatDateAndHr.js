@@ -8,9 +8,9 @@ function formatearFecha(input) {
   // Agregar ceros a la izquierda si es necesario
   const diaFormateado = dia < 10 ? `0${dia}` : dia;
   const mesFormateado = mes < 10 ? `0${mes}` : mes;
-
+  const anioFormateado = fecha.getFullYear();
   // Formatear y devolver la fecha
-  return `${diaFormateado}-${mesFormateado}`;
+  return `${diaFormateado}-${mesFormateado-1}-${anioFormateado}`;
 }
 
 
@@ -23,10 +23,13 @@ const formatDateAndTime = (input) => {
   }
 
   // Obtener la fecha en formato 'YYYY-MM-DD'
+
   const dayDate_format_yyyy_mm_dd = date.toISOString().split('T')[0];
+ 
   // Obtener la fecha en formato 'YYYY-MM-DD'
   const dayDate_format_dd_mm = formatearFecha(dayDate_format_yyyy_mm_dd);
   
+  const dayDate_format_dd_mm_yyyy = dayDate_format_yyyy_mm_dd.split('-').reverse().join('-');
 
   // Obtener la hora y los minutos en el huso horario de Chile
   const chileTime = new Intl.DateTimeFormat('es-CL', {
@@ -38,7 +41,7 @@ const formatDateAndTime = (input) => {
 
   const dayHour = chileTime.format(date);
 
-  return { dayDate_format_yyyy_mm_dd,dayDate_format_dd_mm, dayHour };
+  return { dayDate_format_yyyy_mm_dd,dayDate_format_dd_mm_yyyy, dayHour };
 };
 
 export default formatDateAndTime;

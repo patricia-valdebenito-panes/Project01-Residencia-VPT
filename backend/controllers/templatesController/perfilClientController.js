@@ -8,6 +8,7 @@ import TemplateModel from "../../models/templatesModel.js";
 // register new resident/tutor
 const createNewClient = async (req,res) => {
   const template = new TemplateClientUserModel(req.body);
+  console.log("template",template)
   template.creator= req.user._id; 
   try {
     await template.save();

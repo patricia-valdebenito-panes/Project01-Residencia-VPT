@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import ClientAxios from "../config/ClientAxios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const TemplateContext = createContext();
 
@@ -42,6 +42,7 @@ const TemplateProvider = ({ children }) => {
   };
 
   const getTemplate = async (_id) => {
+
     try {
       if (!token) {
         console.log("sin token : ");
@@ -49,7 +50,7 @@ const TemplateProvider = ({ children }) => {
       }
 
       const { data } = await ClientAxios(`/templates/${_id}`, config);
-      console.log("data getTemplateCT:", data);
+      console.log("data getTemplate:", data);
       setTemplate(data);
     } catch (error) {
       console.log("error : ", error);
@@ -57,6 +58,7 @@ const TemplateProvider = ({ children }) => {
   };
 
   const getTemplateTC = async (_id, type) => {
+    setTemplateTC({});
     let url = "";
     try {
       if (!token) {
