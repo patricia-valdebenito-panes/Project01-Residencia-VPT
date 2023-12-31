@@ -17,7 +17,7 @@ router.route("/")
 
 router.route("/:id")
   .get(checkAuth, getTemplate_CT3)
-  // .put(checkAuth, editTemplate_CT3)
-  // .delete(checkAuth, deleteTemplate_CT3);
+   .put(checkAuth, editTemplate_CT3)
+   .delete(checkAuth, deleteTemplate_CT3);
 
 export default router;

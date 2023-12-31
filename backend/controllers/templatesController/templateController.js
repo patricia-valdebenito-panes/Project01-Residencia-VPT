@@ -109,10 +109,50 @@ const editTemplate = async (req, res) => {
   }
 };
 
+const deleteTemplate = async (req, res) => {
+  const { id } = req.params;
+
+  const template = await TemplateModel.findById(id);
+  template.type = req.body.type;
+  template.client = req.body.client;
+
+  if (!template) {
+    const err = new Error("No encontrado.");
+    return res.status(404).json({ msg: err.message });
+  }
+
+  // if(template.creator.toString() !== req.user._id.toString()){
+  //   const err = new Error('No Válido.');
+  //   return res.status(404).json({msg:err.message})
+  // }
+
+  if (req.user.rol !== "SUPERADMIN") {
+    const err = new Error("No Válido.");
+    return res.status(403).json({ msg: err.message });
+  }
+
+  if (template.creator.toString() !== req.user._id.toString()) {
+    let listContributors = [...new Set(template.contributors)];
+    listContributors.map((e) => {
+      if (e.toString() !== req.user._id.toString()) {
+        template.contributors.push(req.user._id);
+      }
+    });
+  }
+
+  template.type = req.body.type || template.type;
+
+  try {
+    const editTemplate = await template.save();
+    res.json(editTemplate);
+  } catch (err) {
+    console.log(`Error : ${err}`);
+  }
+};
 export {
   createTemplate,
   // deleteSubSectionTemplate,
-  // deleteTemplate,
+  deleteTemplate,
   editTemplate,
   getTemplates,
   getTemplate,

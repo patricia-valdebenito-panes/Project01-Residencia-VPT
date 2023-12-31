@@ -26,7 +26,9 @@ router.get("/confirm/:token",confirmationUserToken);
 // reset account - password
 router.post("/new-password",resetAccountPassword);
 
-router.route("/new-password/:token").get(validationToken).post(changePassword);
+router.route("/new-password/:token")
+.get(validationToken)
+.post(changePassword);
 
 // perfil
 router.get("/perfil",checkAuth,perfil);

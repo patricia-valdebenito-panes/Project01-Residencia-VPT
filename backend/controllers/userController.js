@@ -125,6 +125,7 @@ const changePassword = async (req,res)=> {
     const { token }  = req.params;
     const { password }  = req.body;
     const user = await UserModel.findOne({ token });
+    
     if(user){
         user.password = password;
         user.token="";

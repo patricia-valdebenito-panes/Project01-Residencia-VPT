@@ -9,7 +9,8 @@ const transport = nodemailer.createTransport({
       user: process.env.IMAIL_USER,
       pass: process.env.IMAIL_PASS
     }
-});
+}); 
+
 
 const emailRegister = async ( datos ) => {
     console.log("datos",datos);

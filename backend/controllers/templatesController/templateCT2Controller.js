@@ -9,6 +9,30 @@ const getTemplates_CT2 = async (req, res) => {
     consolee.log(`Error : ${err}`);
   }
 };
+const getTemplates_CT2_filterDate = async (req, res) => {
+  try {
+    const { startDate, endDate } = req.query;
+
+    // Validación de parámetros
+    if (!startDate || !endDate) {
+      return res.status(400).json({ error: "Se requieren las fechas de inicio y fin." });
+    }
+
+    // Convierte las fechas a objetos Date
+    const startDateTime = new Date(startDate);
+    const endDateTime = new Date(endDate);
+
+    // Realiza la consulta a la base de datos
+    const records = await TemplateCT2.find({
+      createdAt: { $gte: startDateTime, $lt: endDateTime }
+    });
+
+    res.json(records);
+  } catch (error) {
+    console.error("Error en la consulta:", error);
+    res.status(500).json({ error: "Error en el servidor" });
+  }
+};
 
 const createTemplate_CT2 = async (req, res) => {
   console.log("template 2 req: ", req);
@@ -101,6 +125,7 @@ export {
   createTemplate_CT2,
   getTemplate_CT2,
   getTemplates_CT2,
+  getTemplates_CT2_filterDate,
   deleteTemplate_CT2,
   editTemplate_CT2
 };

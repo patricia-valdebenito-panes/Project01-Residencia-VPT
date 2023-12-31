@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createTemplate,
+  deleteTemplate,
   // deleteTemplate,
   editTemplate,
   getTemplate,
@@ -12,8 +13,10 @@ const router = express.Router();
 
 router.route("/").get(checkAuth, getTemplates).post(checkAuth, createTemplate);
 
-router.route("/:id").get(checkAuth, getTemplate).put(checkAuth, editTemplate);
-// .delete(checkAuth, deleteTemplate);
+router.route("/:id")
+.get(checkAuth, getTemplate)
+.put(checkAuth, editTemplate)
+.delete(checkAuth, deleteTemplate);
 
 // // lista de templates
 router.get("/list-templates", checkAuth, getTemplates);
